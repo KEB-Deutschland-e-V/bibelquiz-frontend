@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService, Question } from '../services/backend.service';
 
 @Component({
   selector: 'app-welcome',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
+  question: Question;
+
+  constructor(backendService: BackendService) { 
+    this.question = backendService.getRandomQuestion(1);
+  }
+
+  
 
   ngOnInit(): void {
   }

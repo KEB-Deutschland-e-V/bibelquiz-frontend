@@ -1,5 +1,9 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +14,12 @@ import { HighscoresComponent } from './highscores/highscores.component';
 import { GameComponent } from './game/game.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { BackendService } from './services/backend.service';
+
+export function preloadQuestions(backendService: BackendService): Function {
+  return () => backendService.init(); 
+}
+
 
 @NgModule({
   declarations: [
@@ -23,6 +33,7 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
@@ -30,7 +41,16 @@ import { environment } from '../environments/environment';
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [],
+  providers: [
+    BackendService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: preloadQuestions,
+      deps: [ BackendService],
+      multi: true
+    }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
