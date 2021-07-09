@@ -1,1 +1,34 @@
-<router-outlet></router-outlet>
+<div fxLayout="column" fxFlexFill id="content">
+  <mat-toolbar color="primary">
+    <img src="assets/images/android-chrome-192x192.png" alt="Logo" class="logo" [routerLink]="['/welcome']"/>
+    <span class="spaced" [routerLink]="['/welcome']">KEB BibelQuiz</span>
+    <div>
+      <a class="spaced white" mat-button [routerLink]="['/spiel']">Spiel</a>
+      <a class="spaced white" mat-button [routerLink]="['/highscores']"> Highscores</a>
+    </div>
+  </mat-toolbar>
+  <main fxFlex>
+      <router-outlet></router-outlet>
+  </main>
+  <footer>
+    <a mat-button [routerLink]="['/impressum']">
+      Impressum
+    </a>
+    <span class="spaced">|</span>
+    <a mat-button [routerLink]="['/datenschutz']">
+      Datenschutz
+    </a>
+    <span class="spaced">|</span> 
+    <a mat-button href="https://www.keb-de.org/" target="_blank">
+      KEB-Deutschland e.V.
+    </a>
+    <span class="spaced">|</span> 
+    <a mat-button href="https://webdad.eu" target="_blank">
+      WebDaD
+    </a>
+    <span class="spaced">|</span> 
+    <a mat-button href="https://github.com/KEB-Deutschland-e-V" target="_blank">
+      SourceCode
+    </a>
+  </footer> 
+</div>

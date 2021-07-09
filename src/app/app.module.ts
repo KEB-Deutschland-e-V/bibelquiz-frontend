@@ -16,6 +16,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BackendService } from './services/backend.service';
 
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
+
+
+
 export function preloadQuestions(backendService: BackendService): Function {
   return () => backendService.init(); 
 }
@@ -34,6 +40,9 @@ export function preloadQuestions(backendService: BackendService): Function {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatToolbarModule,
+    MatListModule,
+    MatButtonModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

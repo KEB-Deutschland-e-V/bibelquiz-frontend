@@ -1,0 +1,46 @@
+.spaced {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.logo {
+  height: 80px;
+}
+
+footer {
+  background-color: #ddd;
+  border-top: 1px solid #bbb;
+  text-align: center;
+}
+
+#clickFooter footer:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+#btmFooter {
+  align-self: flex-end;
+}
+.white {
+  text-decoration: none;
+  color:white;
+}
+
+
+#content {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-size: x-large;
+}
+
+main {
+  flex-grow: 1;
+  margin-left: 10px;
+  text-align: center;
+}
+
+mat-toolbar, main, footer {
+  flex-shrink: 0;
+}
