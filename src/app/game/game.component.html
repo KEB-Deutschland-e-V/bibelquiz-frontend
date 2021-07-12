@@ -1,5 +1,51 @@
-<p> Das Spiel</p>
-<p>1. Auswahl Schwierigkeitsgrad</p>
-<p>2. Fragen bis zur 3. falschen</p>
-<p>3. Highscore anzeigen und eintragen, wenn gewünscht</p>
-<p>4. links: nochmal, highscores</p>
+<h1>Spiel</h1>
+<div id="score" *ngIf="state === 'Game'">
+  Punkte: {{questionNumber}}
+</div>
+<div id="lives" *ngIf="state === 'Game'">
+  <span *ngFor="let l of [].constructor(lives)">L</span>
+</div>
+<div *ngIf="state === 'Start'">
+  <h2>Wähle deinen Schwierigkeitsgrad</h2>
+  <mat-grid-list cols="3" rowHeight="3:1">
+    <mat-grid-tile *ngFor="let d of difficulties">
+      <button mat-raised-button color="primary" class="big-button" (click)="setDifficulty(d)">
+        {{d.name}}
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div *ngIf="state === 'Countdown'">
+  <h2>{{countdown}}</h2>
+</div>
+<div *ngIf="state === 'Game'">
+  <h2>Frage {{questionNumber}}</h2>
+  <p>{{question.question}}</p>
+  <mat-grid-list cols="2" rowHeight="4:1">
+    <mat-grid-tile>
+      <button mat-stroked-button color="primary" (click)="chooseAnswer(1)">
+        {{question.answer_1}}
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-stroked-button color="primary" (click)="chooseAnswer(2)">
+        {{question.answer_2}}
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-stroked-button color="primary" (click)="chooseAnswer(3)">
+        {{question.answer_3}}
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-stroked-button color="primary" (click)="chooseAnswer(4)">
+        {{question.answer_4}}
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div *ngIf="state === 'Highscore'">
+  Punkte: {{questionNumber}}
+  <p>3. Highscore anzeigen und eintragen, wenn gewünscht</p>
+  <p>4. links: nochmal, highscores</p>
+</div>

@@ -19,6 +19,7 @@ import { BackendService } from './services/backend.service';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 
@@ -43,6 +44,7 @@ export function preloadQuestions(backendService: BackendService): Function {
     MatToolbarModule,
     MatListModule,
     MatButtonModule,
+    MatGridListModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

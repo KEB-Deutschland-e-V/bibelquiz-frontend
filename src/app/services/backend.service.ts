@@ -35,13 +35,17 @@ export class BackendService {
     })
   }
 
-  public getRandomQuestion(difficulty: number) {
-    const filtered = this.questions.filter(q => q.difficulty === difficulty)
+  public getRandomQuestion(difficulty: Difficulty) {
+    const filtered = this.questions.filter(q => q.difficulty === parseInt(difficulty.id))
     return filtered[Math.floor(Math.random()*filtered.length)];
   }
 
   public getDifficulties(): Difficulty[] {
     return this.difficulties;
+  }
+
+  public postStats(question: Question, answer: number) {
+    // TODO: post question and answer to stats
   }
   
 }
