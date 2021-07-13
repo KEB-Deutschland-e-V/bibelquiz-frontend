@@ -16,6 +16,7 @@ export class GameComponent implements OnInit {
     lives: 3
   }
   countdown;
+  countdownInterval: any;
   lives;
   questionNumber = 1;
   question: Question;
@@ -36,17 +37,23 @@ export class GameComponent implements OnInit {
     this.difficulty = difficulty;
     this.state = GameState.Countdown;
     this.countdown = this.config.countdown;
-    setInterval(() => {
-      if (this.countdown > 1) {
-        this.countdown--;
-      } else {
-        this.state = GameState.Game;
-      }
-    }, this.config.countdown * 1000);
+    this.countdownInterval = setInterval(() => {
+      this.count();
+    }, 1000);
+  }
+  private count() {
+    console.log(new Date().toLocaleTimeString() + ': ' + this.countdown);
+    if (this.countdown > 1) {
+      this.countdown--;
+    } else {
+      clearInterval(this.countdownInterval);
+      this.state = GameState.Game;
+    }
   }
   public chooseAnswer(answer:number) {
     if (this.question.answer === answer) {
       this.questionNumber++
+      // TODO: https://weuselibs.wordpress.com/2021/02/09/you-should-add-%F0%9F%8E%89-canvas-confetti-%F0%9F%8E%89-to-your-angular-project/
     } else {
       this.lives--;
     }
@@ -55,7 +62,7 @@ export class GameComponent implements OnInit {
     // TODO: if OK: green
     // TODO: if FALSE: -1 live, red 
 
-    setTimeout(() => { // Wait 1 second
+    setTimeout(() => { // Wait 1 second  // TODO: to slow ...
       if (this.lives > 0) {
         this.question = this.backend.getRandomQuestion(this.difficulty)
         // TODO: remove colors

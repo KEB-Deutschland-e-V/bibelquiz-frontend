@@ -5,7 +5,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## TODO
 
 - Game: Add Timer?
-- Countdown to slow
 - New Question to slow.
 - Add Colors to Answer, disable buttons
 - postStat

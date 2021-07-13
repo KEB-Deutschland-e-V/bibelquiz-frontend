@@ -23,24 +23,16 @@
   <p>{{question.question}}</p>
   <mat-grid-list cols="2" rowHeight="4:1">
     <mat-grid-tile>
-      <button mat-stroked-button color="primary" (click)="chooseAnswer(1)">
-        {{question.answer_1}}
-      </button>
+      <app-answer [answer]="question.answer_1" (click)="chooseAnswer(1)"></app-answer>
     </mat-grid-tile>
     <mat-grid-tile>
-      <button mat-stroked-button color="primary" (click)="chooseAnswer(2)">
-        {{question.answer_2}}
-      </button>
+      <app-answer [answer]="question.answer_2" (click)="chooseAnswer(2)"></app-answer>
     </mat-grid-tile>
     <mat-grid-tile>
-      <button mat-stroked-button color="primary" (click)="chooseAnswer(3)">
-        {{question.answer_3}}
-      </button>
+      <app-answer [answer]="question.answer_3" (click)="chooseAnswer(3)"></app-answer>
     </mat-grid-tile>
     <mat-grid-tile>
-      <button mat-stroked-button color="primary" (click)="chooseAnswer(4)">
-        {{question.answer_4}}
-      </button>
+      <app-answer [answer]="question.answer_4" (click)="chooseAnswer(4)"></app-answer>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
