@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnswerState } from '../answer/answer.component';
 import { BackendService, Difficulty, Question } from '../services/backend.service';
 
 @Component({
@@ -20,6 +21,12 @@ export class GameComponent implements OnInit {
   lives;
   questionNumber = 1;
   question: Question;
+  answerState = {
+    answer_1: AnswerState.Select,
+    answer_2: AnswerState.Select,
+    answer_3: AnswerState.Select,
+    answer_4: AnswerState.Select
+  }
   constructor(private backend: BackendService) { 
     this.difficulties = this.backend.getDifficulties();
     this.difficulty = this.difficulties[0];
@@ -59,13 +66,40 @@ export class GameComponent implements OnInit {
     }
     this.backend.postStats(this.question, answer)
 
-    // TODO: if OK: green
-    // TODO: if FALSE: -1 live, red 
+    switch(this.question.answer) {
+      case 1:
+        this.answerState.answer_1 = AnswerState.Right;
+        this.answerState.answer_2 = AnswerState.Wrong;
+        this.answerState.answer_3 = AnswerState.Wrong;
+        this.answerState.answer_4 = AnswerState.Wrong;
+        break;
+      case 2:
+        this.answerState.answer_1 = AnswerState.Wrong;
+        this.answerState.answer_2 = AnswerState.Right;
+        this.answerState.answer_3 = AnswerState.Wrong;
+        this.answerState.answer_4 = AnswerState.Wrong;
+        break;
+      case 3:
+        this.answerState.answer_1 = AnswerState.Wrong;
+        this.answerState.answer_2 = AnswerState.Wrong;
+        this.answerState.answer_3 = AnswerState.Right;
+        this.answerState.answer_4 = AnswerState.Wrong;
+        break;
+      case 4:
+        this.answerState.answer_1 = AnswerState.Wrong;
+        this.answerState.answer_2 = AnswerState.Wrong;
+        this.answerState.answer_3 = AnswerState.Wrong;
+        this.answerState.answer_4 = AnswerState.Right;
+        break;
+    }
 
     setTimeout(() => { // Wait 1 second  // TODO: to slow ...
       if (this.lives > 0) {
+        this.answerState.answer_1 = AnswerState.Select;
+        this.answerState.answer_2 = AnswerState.Select;
+        this.answerState.answer_3 = AnswerState.Select;
+        this.answerState.answer_4 = AnswerState.Select;
         this.question = this.backend.getRandomQuestion(this.difficulty)
-        // TODO: remove colors
       } else {
         this.state = GameState.Highscore;
       }
