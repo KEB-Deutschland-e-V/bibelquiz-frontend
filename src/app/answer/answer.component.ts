@@ -12,11 +12,13 @@ import { Component, OnInit, Input } from '@angular/core';
       })),
       state('right', style({
         backgroundColor: 'lightgreen',
-        borderColor: 'green'
+        borderColor: 'green',
+        cursor: 'default'
       })),
       state('wrong', style({
         backgroundColor: 'lightsalmon',
-        borderColor: 'red'
+        borderColor: 'red',
+        cursor: 'default'
       })),
       transition('select => right', [
         animate('0.5s')
@@ -42,14 +44,16 @@ export class AnswerComponent implements OnInit {
   constructor() {
     this.answer = '';
     this.state = AnswerState.Select;
-    // TODO: https://angular.io/guide/animations for the right / wrong / color
+    // TODO: disable on other thhan select
+    // TODO: better styling
+    // TODO: hover style not working ...
   }
 
   ngOnInit(): void {
   }
 
 }
-export enum AnswerState {
+export enum AnswerState { 
   Select = 'select',
   Right = 'right',
   Wrong = 'wrong'

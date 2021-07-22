@@ -1,9 +1,8 @@
-<h1>Spiel</h1>
 <div id="score" *ngIf="state === 'Game'">
   Punkte: {{questionNumber}}
 </div>
 <div id="lives" *ngIf="state === 'Game'">
-  <span *ngFor="let l of [].constructor(lives)">L</span>
+  <span *ngFor="let l of [].constructor(lives)"><mat-icon>favorite</mat-icon></span>
 </div>
 <div *ngIf="state === 'Start'">
   <h2>Wähle deinen Schwierigkeitsgrad</h2>
@@ -16,7 +15,7 @@
   </mat-grid-list>
 </div>
 <div *ngIf="state === 'Countdown'">
-  <h2>{{countdown}}</h2>
+  <h2 id="countdown">{{countdown}}</h2>
 </div>
 <div *ngIf="state === 'Game'">
   <h2>Frage {{questionNumber}}</h2>
@@ -35,6 +34,9 @@
       <app-answer [answer]="question.answer_4" [state]="answerState.answer_4" (click)="chooseAnswer(4)"></app-answer>
     </mat-grid-tile>
   </mat-grid-list>
+</div>
+<div *ngIf="showResult" id="result" [ngClass]="{'wrong': result.state=='wrong', 'right': result.state=='right'}">
+  {{result.text}}
 </div>
 <div *ngIf="state === 'Highscore'">
   Punkte: {{questionNumber}}

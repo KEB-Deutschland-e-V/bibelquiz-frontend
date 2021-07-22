@@ -7,4 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
-}
+} // TODO: TOOLBAR: https://zoaibkhan.com/blog/create-a-responsive-toolbar-in-angular-using-flex-layout/

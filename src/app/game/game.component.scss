@@ -3,3 +3,48 @@
   padding: 20px;
   width:90%;
 }
+
+#lives {
+  padding: 20px;
+  color:green;
+  float: right;
+}
+#score {
+  padding: 20px;
+  float: left;
+}
+
+#countdown {
+  font-size: 8rem;
+  color: #9b1430;
+}
+#result {
+  font-size: xx-large;
+  position:absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  border-width: 2px;
+  border-style: solid;
+  padding: 20px;
+}
+.right {
+  color:green;
+  border-color: green !important;
+  background-color: greenyellow;
+}
+.wrong {
+  color:red;
+  border-color: red !important;
+  background-color: lightsalmon;
+}
+.top {
+  position: absolute;
+  height:100%;
+  width: 100%;
+  top:0;
+  left:0;
+  z-index:120;
+}

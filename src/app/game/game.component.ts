@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { AnswerState } from '../answer/answer.component';
 import { BackendService, Difficulty, Question } from '../services/backend.service';
+
+import * as confetti from 'canvas-confetti';
+
 
 @Component({
   selector: 'app-game',
@@ -27,7 +30,15 @@ export class GameComponent implements OnInit {
     answer_3: AnswerState.Select,
     answer_4: AnswerState.Select
   }
-  constructor(private backend: BackendService) { 
+  showResult = false;
+  result = {
+    state: 'right',
+    text: ''
+  };
+  myConfetti: any;
+  canvas: any;
+  constructor(private backend: BackendService, private renderer2: Renderer2,
+    private elementRef: ElementRef) { 
     this.difficulties = this.backend.getDifficulties();
     this.difficulty = this.difficulties[0];
     this.countdown = this.config.countdown;
@@ -58,10 +69,18 @@ export class GameComponent implements OnInit {
     }
   }
   public chooseAnswer(answer:number) {
+    if (this.showResult) {
+      return;
+    }
+    this.showResult = true;
     if (this.question.answer === answer) {
       this.questionNumber++
-      // TODO: https://weuselibs.wordpress.com/2021/02/09/you-should-add-%F0%9F%8E%89-canvas-confetti-%F0%9F%8E%89-to-your-angular-project/
+      this.result.state = 'right';
+      this.result.text = 'Richtig!'
+      this.surprise();
     } else {
+      this.result.state = 'wrong';
+      this.result.text = 'Leider Falsch!'
       this.lives--;
     }
     this.backend.postStats(this.question, answer)
@@ -93,17 +112,47 @@ export class GameComponent implements OnInit {
         break;
     }
 
-    setTimeout(() => { // Wait 1 second  // TODO: to slow ...
+    setTimeout(() => { // Wait 2 seconds
       if (this.lives > 0) {
+        this.showResult = false;
+        if (this.canvas) {
+          this.myConfetti.reset();
+          this.renderer2.removeChild(this.elementRef.nativeElement, this.canvas)
+        }
         this.answerState.answer_1 = AnswerState.Select;
         this.answerState.answer_2 = AnswerState.Select;
         this.answerState.answer_3 = AnswerState.Select;
         this.answerState.answer_4 = AnswerState.Select;
         this.question = this.backend.getRandomQuestion(this.difficulty)
       } else {
-        this.state = GameState.Highscore;
+        this.result.text = 'Game Over ...'
+        setTimeout(()=> {
+          this.showResult = false;
+          this.state = GameState.Highscore;
+        }, 1000)
       }
-    }, 1000)
+    }, 2000)
+  }
+  public surprise(): void {
+    this.canvas = this.renderer2.createElement('canvas');
+    this.renderer2.addClass(this.canvas, 'top');
+    this.renderer2.appendChild(this.elementRef.nativeElement, this.canvas);
+  
+    this.myConfetti = confetti.create(this.canvas, {
+        resize: true // will fit all screen sizes
+      });
+
+      this.myConfetti({
+      particleCount: 100,
+      spread: 60,
+      origin: {
+        y: 1,
+        x: 0.5
+      },
+      zIndex: 200
+      // any other options from the global
+      // confetti function
+    });
   }
 }
 enum GameState {

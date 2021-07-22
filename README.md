@@ -5,10 +5,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## TODO
 
 - Game: Add Timer?
-- New Question to slow.
-- Add Colors to Answer, disable buttons
 - postStat
 - Highscore-Screen
+- Legal copy
+- datenschutz copy
 
 ## Development server
 

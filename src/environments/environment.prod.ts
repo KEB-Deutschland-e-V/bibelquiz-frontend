@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backend: 'http://bq-backend.webdad.eu/'
+  backend: 'https://bq-backend.webdad.eu'
 };
