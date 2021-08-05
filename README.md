@@ -9,6 +9,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Highscore-Screen
 - Legal copy
 - datenschutz copy
+- Dockerfile
+- (do not use 80 in nginx! use 3001)
 
 ## Development server
 
