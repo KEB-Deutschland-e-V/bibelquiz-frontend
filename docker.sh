@@ -9,5 +9,5 @@ docker rm bibelquiz-frontend || :
 docker run \
 --name bibelquiz-frontend \
 --restart unless-stopped \
---network="host" \
+--publish "${BQ_FRONTEND_PORT}":8080 \
 -d bibelquiz/frontend:latest
