@@ -8,7 +8,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Answer buttons: mobile nice!
 - Legal copy
 - datenschutz copy
-- add dockerfile
+- Dockerfile
+- (do not use 80 in nginx! use 3001)
+- Add MetaTags (facebook, twitter)
 
 ## Development server
 
