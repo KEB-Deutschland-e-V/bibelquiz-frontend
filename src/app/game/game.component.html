@@ -39,7 +39,10 @@
   {{result.text}}
 </div>
 <div *ngIf="state === 'Highscore'">
-  Punkte: {{questionNumber}}
-  <p>3. Highscore anzeigen und eintragen, wenn gewünscht</p>
-  <p>4. links: nochmal, highscores</p>
+  <p>Herzlichen Glückwunsch, du hast {{questionNumber}} Punkte!</p>
+  <p>Möchtest du diese in die Highscore-Liste eintragen?</p>
+  <input type="text" placeholder="Name"/>
+  <p>Checkbox save name (LocalStorage)</p>
+  <button>Submit</button>
+  <p>links: nochmal, highscores</p>
 </div>

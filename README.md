@@ -5,10 +5,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## TODO
 
 - Game: Add Timer?
-- postStat
-- Highscore-Screen
+- Answer buttons: mobile nice!
 - Legal copy
 - datenschutz copy
+- add dockerfile
 
 ## Development server
 

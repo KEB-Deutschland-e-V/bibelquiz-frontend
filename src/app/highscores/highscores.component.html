@@ -1,2 +1,12 @@
 <h1>HighScores</h1>
-<p>Liste nach Schwierigkeitsgrad</p>
+<div *ngFor="let d of difficulties">
+  <h2>{{d.name}}</h2>
+  <table>
+    <tr *ngFor="let score of filterHighscores(d); index as i">
+      <th>{{i+1}}</th>
+      <td>{{score.username}}</td>
+      <td>{{score.score}}</td>
+    </tr>
+  </table>
+  <hr/>
+</div>

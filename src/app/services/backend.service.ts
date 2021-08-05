@@ -46,7 +46,10 @@ export class BackendService {
   }
 
   public postStats(question: Question, answer: number) {
-    // TODO: post question and answer to stats
+    return this.httpClient.post(environment.backend + '/stat', {
+      question: question,
+      answer: answer
+    });
   }
   
 }
