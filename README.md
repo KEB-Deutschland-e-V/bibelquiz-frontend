@@ -5,13 +5,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## TODO
 
 - Game: Add Timer?
-- Answer buttons: mobile nice!
+- Answer buttons: untereinander
+- Difficulties untereinander
 - Legal copy
 - datenschutz copy
-- Dockerfile
-- (do not use 80 in nginx! use 3001)
 - Add MetaTags (facebook, twitter)
 - https://code-maze.com/angular-material-navigation/
+- https://zoaibkhan.com/blog/create-a-responsive-toolbar-in-angular-using-flex-layout/
+- Add Sounds
+- Footere untereinander in mobile
 
 ## Development server
 

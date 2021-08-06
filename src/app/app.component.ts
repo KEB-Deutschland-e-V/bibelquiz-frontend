@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 
+import packageInfo from '../../package.json';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  public version: string = packageInfo.version;
   title = 'frontend';
-} // TODO: TOOLBAR: https://zoaibkhan.com/blog/create-a-responsive-toolbar-in-angular-using-flex-layout/
+} // TODO: TOOLBAR: 
