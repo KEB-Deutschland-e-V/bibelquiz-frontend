@@ -7,8 +7,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Game: Add Timer?
 - Add Sounds
 
-- Add MetaTags (facebook, twitter)
-
 
 ## Development server
 
