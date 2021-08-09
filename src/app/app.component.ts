@@ -10,5 +10,4 @@ import packageInfo from '../../package.json';
 })
 export class AppComponent {
   public version: string = packageInfo.version;
-  title = 'frontend';
-} // TODO: TOOLBAR: 
+}
