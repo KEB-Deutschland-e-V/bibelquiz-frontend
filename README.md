@@ -5,8 +5,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## TODO
 
 - Game: Add Timer?
-- Add Sounds
-
+- no double questions!
+- highscore-entry
+- highscore sheet
 
 ## Development server
 

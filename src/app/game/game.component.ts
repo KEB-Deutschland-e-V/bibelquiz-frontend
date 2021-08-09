@@ -3,6 +3,7 @@ import { AnswerState } from '../answer/answer.component';
 import { BackendService, Difficulty, Question } from '../services/backend.service';
 
 import * as confetti from 'canvas-confetti';
+import { SoundService } from '../services/sound.service';
 
 
 @Component({
@@ -37,13 +38,17 @@ export class GameComponent implements OnInit {
   };
   myConfetti: any;
   canvas: any;
-  constructor(private backend: BackendService, private renderer2: Renderer2,
-    private elementRef: ElementRef) { 
+  constructor(
+    private backend: BackendService, 
+    private renderer2: Renderer2,
+    private elementRef: ElementRef,
+    private sounds: SoundService
+    ) { 
     this.difficulties = this.backend.getDifficulties();
     this.difficulty = this.difficulties[0];
     this.countdown = this.config.countdown;
     this.lives = this.config.lives;
-    this.question = this.backend.getRandomQuestion(this.difficulty); // TODO: utf-8 problem
+    this.question = this.backend.getRandomQuestion(this.difficulty);
   }
 
   ngOnInit(): void {
@@ -77,10 +82,12 @@ export class GameComponent implements OnInit {
       this.questionNumber++
       this.result.state = 'right';
       this.result.text = 'Richtig!'
+      this.sounds.correct();
       this.surprise();
     } else {
       this.result.state = 'wrong';
       this.result.text = 'Leider Falsch!'
+      this.sounds.wrong();
       this.lives--;
     }
     this.backend.postStats(this.question, answer)
