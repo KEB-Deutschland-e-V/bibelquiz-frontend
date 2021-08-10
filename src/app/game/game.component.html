@@ -26,8 +26,25 @@
 <div *ngIf="state === 'Highscore'">
   <p>Herzlichen Glückwunsch, du hast {{questionNumber}} Punkte!</p>
   <p>Möchtest du diese in die Highscore-Liste eintragen?</p>
-  <input type="text" placeholder="Name"/>
-  <p>Checkbox save name (LocalStorage)</p>
-  <button>Submit</button>
-  <p>links: nochmal, highscores</p>
+  <form>
+    <mat-form-field id="nameInput">
+      <mat-label>Dein Name:</mat-label>
+      <input matInput placeholder="Dein Name" formControlName="name" />
+    </mat-form-field>
+    <br/>
+  </form>  
+  <button mat-raised-button color="primary" class="half-button" (click)="inputHighscore()" >
+    Eintragen
+  </button>
+  <button mat-raised-button color="primary" class="half-button" (click)="doNotInputHighscore()" >
+    Nein Danke
+  </button>
+</div>
+<div *ngIf="state === 'Again'">
+  <p>Danke für deinen Eintrag!</p>
+  <button mat-raised-button color="primary" class="big-button" (click)="playAgain()" >
+    Nochmal Spielen!
+  </button>
+  <br/>
+  <button mat-raised-button color="primary" [routerLink]="['/highscores']" class="start-button">Highscores</button>
 </div>

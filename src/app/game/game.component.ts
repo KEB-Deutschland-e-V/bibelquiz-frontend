@@ -2,8 +2,11 @@ import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { AnswerState } from '../answer/answer.component';
 import { BackendService, Difficulty, Question } from '../services/backend.service';
 
+import { environment } from './../../environments/environment';
+
 import * as confetti from 'canvas-confetti';
 import { SoundService } from '../services/sound.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -23,7 +26,7 @@ export class GameComponent implements OnInit {
   countdown;
   countdownInterval: any;
   lives;
-  questionNumber = 1;
+  questionNumber = 0;
   question: Question;
   answerState = {
     answer_1: AnswerState.Select,
@@ -38,17 +41,47 @@ export class GameComponent implements OnInit {
   };
   myConfetti: any;
   canvas: any;
+  saveName: boolean = false;
+  name: string = '';
   constructor(
     private backend: BackendService, 
     private renderer2: Renderer2,
     private elementRef: ElementRef,
-    private sounds: SoundService
+    private sounds: SoundService,
+    private route: ActivatedRoute
     ) { 
     this.difficulties = this.backend.getDifficulties();
     this.difficulty = this.difficulties[0];
     this.countdown = this.config.countdown;
     this.lives = this.config.lives;
     this.question = this.backend.getRandomQuestion(this.difficulty);
+    // TODO: load string from LocalStorage if there
+
+    if(!environment.production) {
+      this.route.queryParams.subscribe(params => {
+        if (params['state']) {
+          let desiredState = params['state'];
+          switch(desiredState) {
+            case 'Countdown':
+              this.state = GameState.Countdown;
+              break;
+            case 'Again':
+              this.state = GameState.Again;
+              break;
+            case 'Highscore':
+              this.state = GameState.Highscore;
+              break;
+            case 'Game':
+              this.state = GameState.Game;
+              break;
+            default:
+              this.state = GameState.Start;
+              break;
+          }
+        }
+        
+    });
+    }
   }
 
   ngOnInit(): void {
@@ -161,10 +194,29 @@ export class GameComponent implements OnInit {
       // confetti function
     });
   }
+
+  public inputHighscore(): void {
+    // TODO: design input and checkbox
+    // TODO: read name
+    // TODO: if checkbox is true -> save name and saveName to localhost
+    // TODO: backend post Highscore
+    // TODO: set state to Again
+  }
+  public doNotInputHighscore(): void {
+    this.state = GameState.Again;
+  }
+  public playAgain(): void {
+    this.questionNumber = 0;
+    this.countdown = this.config.countdown;
+    this.lives = this.config.lives;
+    this.question = this.backend.getRandomQuestion(this.difficulty);
+    this.setDifficulty(this.difficulty);
+  }
 }
 enum GameState {
   Start = 'Start',
   Countdown = 'Countdown',
   Game = 'Game',
-  Highscore = 'Highscore'
+  Highscore = 'Highscore',
+  Again = 'Again'
 }

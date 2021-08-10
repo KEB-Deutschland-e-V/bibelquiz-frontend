@@ -8,6 +8,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - no double questions!
 - highscore-entry
 - highscore sheet
+- sound main
+- sound countdown
+- sound game over (positiv)
+- bgm?
+- texte an Lars
+- Logo!
 
 ## Development server
 

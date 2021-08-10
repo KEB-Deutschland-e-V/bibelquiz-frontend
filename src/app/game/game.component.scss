@@ -4,6 +4,12 @@
   width:90%;
   margin-bottom: 20px;
 }
+.half-button {
+  font-size: xx-large;
+  padding: 20px;
+  width:45%;
+  margin:10px;
+}
 
 #lives {
   padding: 20px;
@@ -43,4 +49,7 @@
   top:0;
   left:0;
   z-index:120;
+}
+mat-label {
+  color:black;
 }
