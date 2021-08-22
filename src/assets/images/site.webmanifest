@@ -1,6 +1,6 @@
 {
-    "name": "KEB Bibel-Quiz",
-    "short_name": "KEB Bibel-Quiz",
+    "name": "Bibel Quiz",
+    "short_name": "Bibel Quiz",
     "icons": [
         {
             "src": "android-chrome-192x192.png",
@@ -8,8 +8,8 @@
             "type": "image/png"
         },
         {
-            "src": "android-chrome-384x384.png",
-            "sizes": "384x384",
+            "src": "android-chrome-512x512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ],
