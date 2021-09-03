@@ -119,7 +119,9 @@ export class GameComponent implements OnInit {
       clearInterval(this.countdownInterval);
       this.state = GameState.Game;
       this.pointsInterval = setInterval(() => {
-        this.pointsForQuestion--;
+        if(this.pointsForQuestion > 1) {
+          this.pointsForQuestion--;
+        }
       }, this.pointLossTime);
     }
   }
@@ -186,7 +188,9 @@ export class GameComponent implements OnInit {
         this.usedQuestions.push(this.question.id);
         this.pointsForQuestion = this.maxPointsPerQuestion;
         this.pointsInterval = setInterval(() => {
-          this.pointsForQuestion--;
+          if(this.pointsForQuestion > 1) {
+            this.pointsForQuestion--;
+          }
         }, this.pointLossTime);
       } else {
         this.result.text = 'Game Over ...'
@@ -246,7 +250,9 @@ export class GameComponent implements OnInit {
     this.setDifficulty(this.difficulty);
     this.pointsForQuestion = this.maxPointsPerQuestion;
     this.pointsInterval = setInterval(() => {
-      this.pointsForQuestion--;
+      if(this.pointsForQuestion > 1) {
+        this.pointsForQuestion--;
+      }
     }, this.pointLossTime);
     // TODO: gamestate?
   }
