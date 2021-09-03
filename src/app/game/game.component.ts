@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { AnswerState } from '../answer/answer.component';
+import { FormsModule } from '@angular/forms'
 import { BackendService, Difficulty, Question } from '../services/backend.service';
+import { HighscoreService, Highscore } from '../services/highscore.service';
 
 import { environment } from './../../environments/environment';
 
@@ -23,11 +25,17 @@ export class GameComponent implements OnInit {
     countdown: 3,
     lives: 3
   }
+  points = 0;
+  pointsForQuestion = 10; // max points per Question
+  maxPointsPerQuestion = 10;
+  pointLossTime = 1500;
+  pointsInterval: any;
   countdown;
   countdownInterval: any;
   lives;
   questionNumber = 0;
   question: Question;
+  usedQuestions: string[] = []; //ids of questions that have been used in this round
   answerState = {
     answer_1: AnswerState.Select,
     answer_2: AnswerState.Select,
@@ -43,8 +51,10 @@ export class GameComponent implements OnInit {
   canvas: any;
   saveName: boolean = false;
   name: string = '';
+  entry = false;
   constructor(
     private backend: BackendService, 
+    private highscoreService: HighscoreService,
     private renderer2: Renderer2,
     private elementRef: ElementRef,
     private sounds: SoundService,
@@ -55,10 +65,14 @@ export class GameComponent implements OnInit {
     this.countdown = this.config.countdown;
     this.lives = this.config.lives;
     this.question = this.backend.getRandomQuestion(this.difficulty);
-    // TODO: load string from LocalStorage if there
+    this.usedQuestions.push(this.question.id);
+    this.name = localStorage.getItem("name") || ''
 
     if(!environment.production) {
       this.route.queryParams.subscribe(params => {
+        if (params['points']) {
+          this.points = params['points'];
+        }
         if (params['state']) {
           let desiredState = params['state'];
           switch(desiredState) {
@@ -104,15 +118,20 @@ export class GameComponent implements OnInit {
     } else {
       clearInterval(this.countdownInterval);
       this.state = GameState.Game;
+      this.pointsInterval = setInterval(() => {
+        this.pointsForQuestion--;
+      }, this.pointLossTime);
     }
   }
   public chooseAnswer(answer:number) {
     if (this.showResult) {
       return;
     }
+    clearInterval(this.pointsInterval);
     this.showResult = true;
     if (this.question.answer === answer) {
       this.questionNumber++
+      this.points += this.pointsForQuestion;
       this.result.state = 'right';
       this.result.text = 'Richtig!'
       this.sounds.correct();
@@ -163,7 +182,12 @@ export class GameComponent implements OnInit {
         this.answerState.answer_2 = AnswerState.Select;
         this.answerState.answer_3 = AnswerState.Select;
         this.answerState.answer_4 = AnswerState.Select;
-        this.question = this.backend.getRandomQuestion(this.difficulty)
+        this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
+        this.usedQuestions.push(this.question.id);
+        this.pointsForQuestion = this.maxPointsPerQuestion;
+        this.pointsInterval = setInterval(() => {
+          this.pointsForQuestion--;
+        }, this.pointLossTime);
       } else {
         this.result.text = 'Game Over ...'
         setTimeout(()=> {
@@ -196,21 +220,35 @@ export class GameComponent implements OnInit {
   }
 
   public inputHighscore(): void {
-    // TODO: design input and checkbox
-    // TODO: read name
-    // TODO: if checkbox is true -> save name and saveName to localhost
-    // TODO: backend post Highscore
-    // TODO: set state to Again
+    localStorage.setItem("name", this.name)
+    this.highscoreService.enterScore({
+      username: this.name,
+      score: this.points.toString(),
+      difficulty: this.difficulty.id
+    }).subscribe(result => {
+      console.log('score entered')
+      this.entry = true;
+      this.state = GameState.Again;
+    });
   }
   public doNotInputHighscore(): void {
+    this.entry = false;
     this.state = GameState.Again;
   }
   public playAgain(): void {
     this.questionNumber = 0;
+    this.points = 0;
     this.countdown = this.config.countdown;
     this.lives = this.config.lives;
+    this.usedQuestions = [];
     this.question = this.backend.getRandomQuestion(this.difficulty);
+    this.usedQuestions.push(this.question.id);
     this.setDifficulty(this.difficulty);
+    this.pointsForQuestion = this.maxPointsPerQuestion;
+    this.pointsInterval = setInterval(() => {
+      this.pointsForQuestion--;
+    }, this.pointLossTime);
+    // TODO: gamestate?
   }
 }
 enum GameState {

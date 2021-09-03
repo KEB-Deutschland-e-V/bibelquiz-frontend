@@ -12,11 +12,13 @@
 // Fonts
 @import 'https://fonts.googleapis.com/css?family=Material+Icons';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import url('http://fonts.cdnfonts.com/css/myriad-pro');
 
 html, body {
   height: 100%;
   box-sizing: border-box;
   margin: 0;
+  font-family: 'Myriad Pro', sans-serif;
 }
 
 $fontConfig: (
@@ -265,7 +267,8 @@ $altTheme: (
 }
 
 body {
-  background-color: #fbf9d8;
+  /*background-color: #fbf9d8;*/
+  background-color: white;
 }
 h1 {
   color: #9b1430;

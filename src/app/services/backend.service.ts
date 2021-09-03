@@ -35,9 +35,10 @@ export class BackendService {
     })
   }
 
-  public getRandomQuestion(difficulty: Difficulty) {
-    // TODO: Prevent same question! (Game remembers Id and posts it. Function checks if id is in random. If not ok, If yes repeat)
-    const filtered = this.questions.filter(q => q.difficulty === parseInt(difficulty.id))
+  public getRandomQuestion(difficulty: Difficulty, usedIDs: string[] = []) {
+    const filtered = this.questions.filter((q) => {
+      return q.difficulty === parseInt(difficulty.id) && !usedIDs.includes(q.id)
+    })
     return filtered[Math.floor(Math.random()*filtered.length)];
   }
 

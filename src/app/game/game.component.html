@@ -1,5 +1,5 @@
 <div id="score" *ngIf="state === 'Game'">
-  Punkte: {{questionNumber}}
+  Punkte: {{points}}
 </div>
 <div id="lives" *ngIf="state === 'Game'">
   <span *ngFor="let l of [].constructor(lives)"><mat-icon>favorite</mat-icon></span>
@@ -15,6 +15,7 @@
 </div>
 <div *ngIf="state === 'Game'">
   <p>{{question.question}}</p>
+  <p>{{pointsForQuestion}}</p>
   <app-answer [answer]="question.answer_1" [state]="answerState.answer_1" (click)="chooseAnswer(1)"></app-answer>
   <app-answer [answer]="question.answer_2" [state]="answerState.answer_2" (click)="chooseAnswer(2)"></app-answer>
   <app-answer [answer]="question.answer_3" [state]="answerState.answer_3" (click)="chooseAnswer(3)"></app-answer>
@@ -24,15 +25,13 @@
   {{result.text}}
 </div>
 <div *ngIf="state === 'Highscore'">
-  <p>Herzlichen Glückwunsch, du hast {{questionNumber}} Punkte!</p>
+  <p>Herzlichen Glückwunsch, du hast {{points}} Punkte!</p>
   <p>Möchtest du diese in die Highscore-Liste eintragen?</p>
-  <form>
-    <mat-form-field id="nameInput">
-      <mat-label>Dein Name:</mat-label>
-      <input matInput placeholder="Dein Name" formControlName="name" />
-    </mat-form-field>
-    <br/>
-  </form>  
+  <mat-form-field id="nameInput" appearance="legacy">
+    <mat-label>Dein Name:</mat-label>
+    <input matInput placeholder="Dein Name" [(ngModel)]="name"/>
+  </mat-form-field>
+  <br/>
   <button mat-raised-button color="primary" class="half-button" (click)="inputHighscore()" >
     Eintragen
   </button>
@@ -41,7 +40,8 @@
   </button>
 </div>
 <div *ngIf="state === 'Again'">
-  <p>Danke für deinen Eintrag!</p>
+  <p *ngIf="entry === true">Danke für deinen Eintrag!</p>
+  <p *ngIf="entry === false">&nbsp;</p>
   <button mat-raised-button color="primary" class="big-button" (click)="playAgain()" >
     Nochmal Spielen!
   </button>

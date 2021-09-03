@@ -1,8 +1,8 @@
 <h1>HighScores</h1>
-<div *ngFor="let d of difficulties">
-  <h2>{{d.name}}</h2>
+<div *ngFor="let d of diffWithScores">
+  <h2>{{d.difficulty.name}}</h2>
   <table>
-    <tr *ngFor="let score of filterHighscores(d); index as i">
+    <tr *ngFor="let score of d.scores; index as i">
       <th>{{i+1}}</th>
       <td>{{score.username}}</td>
       <td>{{score.score}}</td>
