@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
-- Game: Add Timer?
+- Game: Points per Question (start at 10) -> lower every 3 Seconds
 - no double questions!
 - highscore-entry
 - highscore sheet
@@ -13,7 +13,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - sound game over (positiv)
 - bgm?
 - texte an Lars
-- Logo!
+- Icons 3d effekt (ripple, shadow, gradient)
+- Buttons 3D > Not yellow, light dark
+- Grün: #a5cd22
+- Font: Myriad Pro
+- bg: white
 
 ## Development server
 
