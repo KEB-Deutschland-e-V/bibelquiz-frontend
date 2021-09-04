@@ -21,6 +21,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRippleModule} from '@angular/material/core';
+
 
 import { AnswerComponent } from './answer/answer.component';
 import {MatIconModule} from '@angular/material/icon';
@@ -57,6 +59,7 @@ export function preloadQuestions(backendService: BackendService): Function {
     MatButtonModule,
     MatGridListModule,
     MatIconModule,
+    MatRippleModule,
     MatInputModule,
     MatCheckboxModule,
     MatFormFieldModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { AnswerState } from '../answer/answer.component';
 import { FormsModule } from '@angular/forms'
 import { BackendService, Difficulty, Question } from '../services/backend.service';
@@ -9,6 +9,7 @@ import { environment } from './../../environments/environment';
 import * as confetti from 'canvas-confetti';
 import { SoundService } from '../services/sound.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatRipple } from '@angular/material/core';
 
 
 @Component({
@@ -17,6 +18,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
+
+
 
   state: GameState = GameState.Start;
   difficulties: Difficulty[] = [];

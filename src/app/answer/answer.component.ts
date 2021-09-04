@@ -8,16 +8,19 @@ import { Component, OnInit, Input } from '@angular/core';
       // ...
       state('select', style({
         backgroundColor: 'white',
-        borderColor: 'gray'
+        boxShadow: '1px 1px 2px 2px gray',
+        borderColor: 'black'
       })),
       state('right', style({
-        backgroundColor: 'lightgreen',
+        backgroundColor: '#a5cd22',
         borderColor: 'green',
+        boxShadow: '1px 1px 2px 2px #a5cd22',
         cursor: 'default'
       })),
       state('wrong', style({
         backgroundColor: 'lightsalmon',
         borderColor: 'red',
+        boxShadow: '1px 1px 2px 2px lightsalmon',
         cursor: 'default'
       })),
       transition('select => right', [

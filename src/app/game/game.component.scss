@@ -10,15 +10,29 @@
   width:45%;
   margin:10px;
 }
-
-#lives {
-  padding: 20px;
-  color:green;
-  float: right;
+#status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 16px;
+  position: relative;
+  height: inherit;
+  margin-top: 15px;
+  font-size: 1.2em;
 }
-#score {
-  padding: 20px;
-  float: left;
+#lives {
+  text-shadow: 2px 2px 3px grey;
+  color:#a5cd22;
+  margin-left: auto;
+}
+.material-icons {
+  font-size: 48px;
+}
+.mat-icon {
+  height: 48px;
+  width: 48px;
+  transition: all 400ms ease-in-out;
 }
 
 #countdown {

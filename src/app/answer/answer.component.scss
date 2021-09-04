@@ -6,10 +6,10 @@ span {
   cursor: pointer;
   display: block;
   margin-bottom: 20px;
-  margin: 10px;
+  margin: 16px;
   background-color: honeydew;
 }
 span:hover {
-  background-color: yellow !important;
+  background-color: lightgrey !important;
   transition: background 200ms ease-in-out;
 }

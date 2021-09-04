@@ -9,10 +9,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - sound game over (positiv)
 - bgm?
 - texte an Lars
-- Icons 3d effekt (ripple, shadow, gradient)
-- Buttons 3D > Not yellow, light dark --> use default buttons?
-- Grün: #a5cd22
-- better life icons
+
+- Bug Highscores missing in live
 
 ## Development server
 
