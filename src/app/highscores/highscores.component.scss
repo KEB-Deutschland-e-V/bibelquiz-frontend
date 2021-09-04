@@ -1,0 +1,17 @@
+.mat-list-base .mat-list-item {
+  color: black;
+  font-size: 1.2em;
+  border-bottom: 1px solid gray;
+}
+mat-list mat-list-item:last-child {
+  border-bottom: none !important;
+}
+strong {
+  color: #9b1430;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-right: 10px;
+}
+em {
+  margin-left: auto;
+}

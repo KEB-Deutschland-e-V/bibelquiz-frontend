@@ -4,7 +4,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
-- highscore sheet design (use list items instead of table)
 - sound main
 - sound countdown
 - sound game over (positiv)
