@@ -144,7 +144,7 @@ export class GameComponent implements OnInit {
       this.sounds.wrong();
       this.lives--;
     }
-    this.backend.postStats(this.question, answer)
+    this.backend.postStats(this.question, answer, this.result.state === 'right').subscribe();
 
     switch(this.question.answer) {
       case 1:

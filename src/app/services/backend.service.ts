@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 
 
@@ -46,10 +46,17 @@ export class BackendService {
     return this.difficulties;
   }
 
-  public postStats(question: Question, answer: number) {
+  public postStats(question: Question, answer: number, correct: boolean) {
     return this.httpClient.post(environment.backend + '/stat', {
-      question: question,
-      answer: answer
+      question: question.id,
+      answer: answer,
+      correct: correct ? '1': '0'
+    },{
+      headers: new HttpHeaders({
+        'Accept': 'text/html, application/xhtml+xml, */*',
+        'Content-Type': 'application/json'
+      }),
+      responseType: 'text'
     });
   }
   

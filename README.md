@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
-- highscore sheet design
+- highscore sheet design (use list items instead of table)
 - sound main
 - sound countdown
 - sound game over (positiv)
@@ -13,8 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Icons 3d effekt (ripple, shadow, gradient)
 - Buttons 3D > Not yellow, light dark --> use default buttons?
 - Grün: #a5cd22
-- stats
-- better live icons
+- better life icons
 
 ## Development server
 
