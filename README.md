@@ -4,17 +4,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
-- sound main
-- sound countdown
-- sound game over (positiv)
-- bgm?
-- texte an Lars
-
-- text 2 speech -> TEST
-
-- Bug Highscores missing in live
-- Bug entry error (backend: Trying to enter Highscore: {"username":"Dominik TEST","score":"16","difficulty":1}TypeError: Value is not a valid number: 16)
-
 - menu to to the right (burger):
   - Highscores
   - WebDaD
@@ -23,6 +12,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   - buttons:
     - disable animations
     - disable text2speech
+    - disable music
+    - disable sound
+
+- save questions in localstorage
+- save difficulties in localstorage
+- if online, check a hash and try to reload them if needed
+- if offline:
+  - disable highscores
+  - disable posting Stats and highscores
 
 ## Development server
 

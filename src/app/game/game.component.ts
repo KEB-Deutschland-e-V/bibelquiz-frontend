@@ -142,10 +142,14 @@ export class GameComponent implements OnInit {
       this.result.state = 'right';
       this.result.text = 'Richtig!'
       this.sounds.correct();
+      this.tts.stop();
+      this.tts.say(this.result.text);
       this.surprise();
     } else {
       this.result.state = 'wrong';
       this.result.text = 'Leider Falsch!'
+      this.tts.stop();
+      this.tts.say(this.result.text);
       this.sounds.wrong();
       this.lives--;
     }
@@ -264,6 +268,7 @@ export class GameComponent implements OnInit {
     // TODO: gamestate?
   }
   private readQuestion(question: Question) {
+    this.tts.stop()
     this.tts.say(
       question.question 
       + ', A, ' + question.answer_1
