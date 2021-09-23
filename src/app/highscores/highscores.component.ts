@@ -19,7 +19,9 @@ export class HighscoresComponent implements OnInit {
     this.difficulties = this.backend.getDifficulties();
     this.highscoreService.getHighscores().subscribe((data: any) => {
       this.highscores = data;
+      console.log(this.highscores)
       for (const dif of this.difficulties) {
+        console.log(dif.id.toString())
         let filter = this.highscores.filter(x => x.difficulty.toString() === dif.id.toString())
         console.log(filter)
         filter.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0))

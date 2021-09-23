@@ -14,9 +14,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 - Bug Highscores missing in live
 
-- buttons:
-  - disable animations
-  - disable text2speech
+- menu to to the right (burger):
+  - Highscores
+  - WebDaD
+  - SourceCode
+  - Version
+  - buttons:
+    - disable animations
+    - disable text2speech
 
 ## Development server
 
