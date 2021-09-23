@@ -10,7 +10,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - bgm?
 - texte an Lars
 
+- text 2 speech -> TEST
+
 - Bug Highscores missing in live
+
+- buttons:
+  - disable animations
+  - disable text2speech
 
 ## Development server
 

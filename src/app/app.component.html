@@ -6,6 +6,12 @@
   <main fxFlex>
       <router-outlet></router-outlet>
   </main>
+  <div id="settings">
+    <button mat-mini-fab color="accent" aria-label="Mute or unMute all Sounds" (click)="mute()">
+      <mat-icon *ngIf="muted === true">music_off</mat-icon>
+      <mat-icon *ngIf="muted === false">music_note</mat-icon>
+    </button>
+  </div>
   <footer>
     <a mat-button [routerLink]="['/impressum']">
       Impressum

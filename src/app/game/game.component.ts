@@ -8,8 +8,8 @@ import { environment } from './../../environments/environment';
 
 import * as confetti from 'canvas-confetti';
 import { SoundService } from '../services/sound.service';
+import { TtsService } from '../services/tts.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatRipple } from '@angular/material/core';
 
 
 @Component({
@@ -61,6 +61,7 @@ export class GameComponent implements OnInit {
     private renderer2: Renderer2,
     private elementRef: ElementRef,
     private sounds: SoundService,
+    private tts: TtsService,
     private route: ActivatedRoute
     ) { 
     this.difficulties = this.backend.getDifficulties();
@@ -121,6 +122,7 @@ export class GameComponent implements OnInit {
     } else {
       clearInterval(this.countdownInterval);
       this.state = GameState.Game;
+      this.readQuestion(this.question)
       this.pointsInterval = setInterval(() => {
         if(this.pointsForQuestion > 1) {
           this.pointsForQuestion--;
@@ -190,6 +192,7 @@ export class GameComponent implements OnInit {
         this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
         this.usedQuestions.push(this.question.id);
         this.pointsForQuestion = this.maxPointsPerQuestion;
+        this.readQuestion(this.question)
         this.pointsInterval = setInterval(() => {
           if(this.pointsForQuestion > 1) {
             this.pointsForQuestion--;
@@ -251,6 +254,7 @@ export class GameComponent implements OnInit {
     this.question = this.backend.getRandomQuestion(this.difficulty);
     this.usedQuestions.push(this.question.id);
     this.setDifficulty(this.difficulty);
+    this.readQuestion(this.question)
     this.pointsForQuestion = this.maxPointsPerQuestion;
     this.pointsInterval = setInterval(() => {
       if(this.pointsForQuestion > 1) {
@@ -258,6 +262,15 @@ export class GameComponent implements OnInit {
       }
     }, this.pointLossTime);
     // TODO: gamestate?
+  }
+  private readQuestion(question: Question) {
+    this.tts.say(
+      question.question 
+      + ', A, ' + question.answer_1
+      + ', B, ' + question.answer_2
+      + ', C, ' + question.answer_3
+      + ', D, ' + question.answer_4
+    )
   }
 }
 enum GameState {
