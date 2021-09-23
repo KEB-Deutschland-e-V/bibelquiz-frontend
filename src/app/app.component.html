@@ -1,38 +1,59 @@
 <div fxLayout="column" fxFlexFill id="content">
   <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()" *ngIf="!sidenav.opened">menu</mat-icon>
+      <mat-icon (click)="sidenav.toggle()" *ngIf="sidenav.opened">close</mat-icon>
+    </button>
     <img src="assets/images/logo_bibelquiz_auf_rot.png" alt="Logo" class="logo" [routerLink]="['/welcome']"/>
     <span class="spaced" [routerLink]="['/welcome']" id="mainlink">KEB BibelQuiz</span>
-  </mat-toolbar>
-  <main fxFlex>
-      <router-outlet></router-outlet>
-  </main>
-  <div id="settings">
-    <button mat-mini-fab color="accent" aria-label="Mute or unMute all Sounds" (click)="mute()">
-      <mat-icon *ngIf="muted === true">music_off</mat-icon>
-      <mat-icon *ngIf="muted === false">music_note</mat-icon>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon (click)="settingsMenu.toggle()" *ngIf="!settingsMenu.opened">settings</mat-icon>
+      <mat-icon (click)="settingsMenu.toggle()" *ngIf="settingsMenu.opened">close</mat-icon>
     </button>
-  </div>
-  <footer>
-    <a mat-button [routerLink]="['/impressum']">
-      Impressum
-    </a>
-    <span class="spaced">|</span>
-    <a mat-button [routerLink]="['/datenschutz']">
-      Datenschutz
-    </a>
-    <span class="spaced">|</span> 
-    <a mat-button href="https://www.keb-de.org/" target="_blank">
-      KEB-Deutschland e.V.
-    </a>
-    <span class="spaced">|</span> 
-    <a mat-button href="https://webdad.eu" target="_blank">
-      WebDaD
-    </a>
-    <span class="spaced">|</span> 
-    <a mat-button href="https://github.com/KEB-Deutschland-e-V" target="_blank">
-      SourceCode
-    </a>
-    <span class="spaced">|</span> 
-    <span class="mat-button">Version: {{version}}</span>
-  </footer> 
+    
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav position="start">
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="'/welcome'" (click)="sidenav.toggle()"> Start </a>
+        <a mat-list-item [routerLink]="'/game'" (click)="sidenav.toggle()"> Spiel </a>
+        <a mat-list-item [routerLink]="'/highscores'" (click)="sidenav.toggle()"> Highscores </a>
+        <hr/>
+        <a mat-list-item [routerLink]="'/impressum'" (click)="sidenav.toggle()"> Impressum </a>
+        <a mat-list-item [routerLink]="'/datenschutz'" (click)="sidenav.toggle()"> Datenschutz </a>
+        <hr/>
+        <a mat-list-item href="https://www.keb-de.org/" target="_blank"> KEB-Deutschland e.V. </a>
+        <a mat-list-item href="https://webdad.eu" target="_blank"> WebDaD.eu</a>
+        <a mat-list-item href="https://github.com/KEB-Deutschland-e-V" target="_blank"> Source Code </a>
+        <hr/>
+        <mat-list-item>Version: {{version}}</mat-list-item>
+        <hr/>
+        <mat-list-item (click)="sidenav.toggle()">Close</mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav #settingsMenu position="end">
+      <mat-list>
+        <mat-list-item>
+          <mat-slide-toggle [checked]="settings.tts" color="primary" (change)="toggle('tts')">Sprache</mat-slide-toggle>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-slide-toggle [checked]="settings.music" color="primary" (change)="toggle('music')">Musik</mat-slide-toggle>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-slide-toggle [checked]="settings.sound" color="primary" (change)="toggle('sound')">Sound</mat-slide-toggle>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-slide-toggle [checked]="settings.animations" color="primary" (change)="toggle('animations')">Animationen</mat-slide-toggle>
+        </mat-list-item>
+        <hr/>
+        <mat-list-item (click)="settingsMenu.toggle()">Close</mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <main fxFlex>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

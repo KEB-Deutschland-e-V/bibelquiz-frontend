@@ -22,6 +22,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRippleModule} from '@angular/material/core';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 import { AnswerComponent } from './answer/answer.component';
@@ -64,6 +66,8 @@ export function preloadQuestions(backendService: BackendService): Function {
     MatCheckboxModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

@@ -4,17 +4,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
-- menu to to the right (burger):
-  - Highscores
-  - WebDaD
-  - SourceCode
-  - Version
-  - buttons:
-    - disable animations
-    - disable text2speech
-    - disable music
-    - disable sound
-
 - save questions in localstorage
 - save difficulties in localstorage
 - if online, check a hash and try to reload them if needed

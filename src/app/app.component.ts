@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import packageInfo from '../../package.json';
+import { SettingsService } from './services/settings.service';
 
 
 @Component({
@@ -10,12 +11,27 @@ import packageInfo from '../../package.json';
 })
 export class AppComponent {
   public version: string = packageInfo.version;
-  public muted: boolean;
-  constructor(){
-    this.muted = JSON.parse(localStorage.getItem("muted") || 'false');
+  public settings: any = {
+    sound: true,
+    animations: true,
+    tts: true,
+    music: true
+  };
+  constructor(
+    private settingsService: SettingsService, 
+  ){
+    this.settings.sound = this.settingsService.getSound();
+    this.settings.animations = this.settingsService.getAnimations();
+    this.settings.tts = this.settingsService.getTTS();
+    this.settings.music = this.settingsService.getMusic();
   }
-  public mute() {
-    this.muted = !this.muted
-    localStorage.setItem('muted', this.muted ? 'true' : 'false');
+  public toggle (key: string) {
+    this.settingsService.set(key, !this.settings[key]);
+    switch(key) {
+      case 'tts': this.settings.tts = this.settingsService.getTTS(); break;
+      case 'animations': this.settings.animations = this.settingsService.getAnimations(); break;
+      case 'sound': this.settings.sound = this.settingsService.getSound(); break;
+      case 'music': this.settings.music = this.settingsService.getMusic(); break;
+    }
   }
 }

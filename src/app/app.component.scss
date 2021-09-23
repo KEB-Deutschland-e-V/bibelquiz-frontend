@@ -2,7 +2,9 @@
   margin-left: 10px;
   margin-right: 10px;
 }
-
+.spacer {
+  flex: 1 1 auto;
+}
 .logo {
   height: 80px;
 }
@@ -41,6 +43,10 @@ main {
   text-align: center;
 }
 
+.mat-drawer-container {
+  color: #2c2c2c;
+  background-color: white;
+}
 mat-toolbar, main, footer {
   flex-shrink: 0;
 }
@@ -52,6 +58,3 @@ mat-toolbar, main, footer {
 
 }
 
-#settings {
-  right: 10px;
-}

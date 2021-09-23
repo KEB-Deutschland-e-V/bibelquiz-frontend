@@ -10,6 +10,7 @@ import * as confetti from 'canvas-confetti';
 import { SoundService } from '../services/sound.service';
 import { TtsService } from '../services/tts.service';
 import { ActivatedRoute } from '@angular/router';
+import { SettingsService } from '../services/settings.service';
 
 
 @Component({
@@ -62,7 +63,8 @@ export class GameComponent implements OnInit {
     private elementRef: ElementRef,
     private sounds: SoundService,
     private tts: TtsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private settings: SettingsService
     ) { 
     this.difficulties = this.backend.getDifficulties();
     this.difficulty = this.difficulties[0];
@@ -148,9 +150,9 @@ export class GameComponent implements OnInit {
     } else {
       this.result.state = 'wrong';
       this.result.text = 'Leider Falsch!'
-      this.tts.stop();
-      this.tts.say(this.result.text);
       this.sounds.wrong();
+      this.tts.stop();
+      this.tts.say(this.result.text + ' Richtig wäre gewesen: ' + this.getAnswer(this.question));
       this.lives--;
     }
     this.backend.postStats(this.question, answer, this.result.state === 'right').subscribe();
@@ -182,7 +184,7 @@ export class GameComponent implements OnInit {
         break;
     }
 
-    setTimeout(() => { // Wait 2 seconds
+    setTimeout(() => { // Wait 4 seconds
       if (this.lives > 0) {
         this.showResult = false;
         if (this.canvas) {
@@ -209,28 +211,31 @@ export class GameComponent implements OnInit {
           this.state = GameState.Highscore;
         }, 1000)
       }
-    }, 2000)
+    }, 4000)
   }
   public surprise(): void {
-    this.canvas = this.renderer2.createElement('canvas');
-    this.renderer2.addClass(this.canvas, 'top');
-    this.renderer2.appendChild(this.elementRef.nativeElement, this.canvas);
+    if (this.settings.getAnimations()) {
+      this.canvas = this.renderer2.createElement('canvas');
+      this.renderer2.addClass(this.canvas, 'top');
+      this.renderer2.appendChild(this.elementRef.nativeElement, this.canvas);
+    
+      this.myConfetti = confetti.create(this.canvas, {
+          resize: true // will fit all screen sizes
+        });
   
-    this.myConfetti = confetti.create(this.canvas, {
-        resize: true // will fit all screen sizes
+        this.myConfetti({
+        particleCount: 100,
+        spread: 60,
+        origin: {
+          y: 1,
+          x: 0.5
+        },
+        zIndex: 200
+        // any other options from the global
+        // confetti function
       });
-
-      this.myConfetti({
-      particleCount: 100,
-      spread: 60,
-      origin: {
-        y: 1,
-        x: 0.5
-      },
-      zIndex: 200
-      // any other options from the global
-      // confetti function
-    });
+    }  
+    
   }
 
   public inputHighscore(): void {
@@ -276,6 +281,15 @@ export class GameComponent implements OnInit {
       + ', C, ' + question.answer_3
       + ', D, ' + question.answer_4
     )
+  }
+  private getAnswer(question: Question): string {
+    switch(question.answer) {
+      case 1: return question.answer_1;
+      case 2: return question.answer_2;
+      case 3: return question.answer_3;
+      case 4: return question.answer_4;
+      default: return 'Error';
+    }
   }
 }
 enum GameState {
