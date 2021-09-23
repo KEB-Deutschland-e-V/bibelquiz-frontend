@@ -13,6 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - text 2 speech -> TEST
 
 - Bug Highscores missing in live
+- Bug entry error (backend: Trying to enter Highscore: {"username":"Dominik TEST","score":"16","difficulty":1}TypeError: Value is not a valid number: 16)
 
 - menu to to the right (burger):
   - Highscores

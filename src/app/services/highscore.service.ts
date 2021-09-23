@@ -12,7 +12,7 @@ export class HighscoreService {
   public enterScore(data: Highscore) {
     return this.httpClient.post(environment.backend + '/highscore', {
       username: data.username,
-      score: data.score,
+      score: parseInt(data.score),
       difficulty: data.difficulty
     }, {
       headers: new HttpHeaders({
