@@ -4,11 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
-- neue Fragen einbauen (xlsx)
+- neue Fragen + bibelstellen einbauen (xlsx)
 
 - refactor some functions in game
 
-- Schwierigkeitsgrade: leicht 10 punkte max, mittel 20, schwer 30
+- Schwierigkeitsgrade: leicht 10 punkte max, mittel 20, schwer 30 ( -> add to database)
 - Neuer Grad: Gemischt (zufall)
 - Immer Schwierigkeitsgrad anzeigen
 - Highscore-Liste über alle. Schwierigkeit anzeigen
@@ -17,16 +17,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 - Spiel Start: Das Spiel wird gestartet wie wäre hier so ne Art Fanfare? Trompetenmäßiger Einzug des Königs…so in der Art?
 - Frage Falsch: gibt es da einen Sound der nicht ganz sooo "hart" klingt? :)
-- Game Over: Wenn die Leben verbraucht sind kein Sound - gleich punkte anzeigen und Frage Eintrag zur Highscore
 - Hintergrund-Musik Start: Läuft auf der Startseite und in den Highscores	Lied: die Bibel die ist Gottes Wort
 - Hintergrund-Musik Spiel: Läuft während des SpielsLied: die Bibel die ist Gottes Wort - als Karaoke-Version - ohne Gesang…
 
-
-- game over wird ja nur ganz kurz angezeigt, würde ich ganz weglassen und einfach springen zum Punktestand und der Möglichkeit sich einzutragen…  alternativ:Spielende für Gameover
-
+- game over ( add flag)
 
 - next question: from automatic to a button
-
 - add question.bible to auswertung
 
 - save questions in localstorage

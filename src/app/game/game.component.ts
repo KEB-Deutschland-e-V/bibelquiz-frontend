@@ -216,7 +216,7 @@ export class GameComponent implements OnInit {
           }
         }, this.pointLossTime);
       } else {
-        this.result.text = 'Game Over ...'
+        this.result.text = 'Spielende'
         setTimeout(()=> {
           this.showResult = false;
           this.state = GameState.Highscore;
@@ -258,31 +258,16 @@ export class GameComponent implements OnInit {
     }).subscribe(result => {
       console.log('score entered')
       this.entry = true;
-      this.state = GameState.Again;
+      this.state = GameState.Again; 
     });
   }
   public doNotInputHighscore(): void {
+  
     this.entry = false;
-    this.state = GameState.Again;
+    this.state = GameState.Again; 
   }
-  public playAgain(): void {
-    this.questionNumber = 0;
-    this.points = 0;
-    this.countdown = this.config.countdown;
-    this.lives = this.config.lives;
-    this.usedQuestions = [];
-    this.question = this.backend.getRandomQuestion(this.difficulty);
-    this.usedQuestions.push(this.question.id);
-    this.setDifficulty(this.difficulty);
-    this.readQuestion(this.question)
-    this.pointsForQuestion = this.maxPointsPerQuestion;
-    this.pointsInterval = setInterval(() => {
-      if(this.pointsForQuestion > 1) {
-        this.pointsForQuestion--;
-      }
-    }, this.pointLossTime);
-    // TODO: gamestate?
-  }
+
+ 
   private readQuestion(question: Question) {
     this.tts.stop()
     this.tts.say(
