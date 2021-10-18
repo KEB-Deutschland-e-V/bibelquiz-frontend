@@ -113,9 +113,20 @@ export class GameComponent implements OnInit {
     this.difficulty = difficulty;
     this.state = GameState.Countdown;
     this.countdown = this.config.countdown;
-    this.countdownInterval = setInterval(() => {
-      this.count();
-    }, 1000);
+    if (environment.flags.countdown) {
+      this.countdownInterval = setInterval(() => {
+        this.count();
+      }, 1000);
+    } else {
+      this.state = GameState.Game;
+      this.readQuestion(this.question)
+      this.pointsInterval = setInterval(() => {
+        if(this.pointsForQuestion > 1) {
+          this.pointsForQuestion--;
+        }
+      }, this.pointLossTime);
+    }
+    
   }
   private count() {
     console.log(new Date().toLocaleTimeString() + ': ' + this.countdown);

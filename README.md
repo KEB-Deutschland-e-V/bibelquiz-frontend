@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 - neue Fragen einbauen (xlsx)
 
-- countdown entfernen (per Flag)
+- refactor some functions in game
 
 - Schwierigkeitsgrade: leicht 10 punkte max, mittel 20, schwer 30
 - Neuer Grad: Gemischt (zufall)
