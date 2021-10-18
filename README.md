@@ -28,11 +28,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Hintergrund-Musik Start: Läuft auf der Startseite und in den Highscores	Lied: die Bibel die ist Gottes Wort
 - Hintergrund-Musik Spiel: Läuft während des SpielsLied: die Bibel die ist Gottes Wort - als Karaoke-Version - ohne Gesang…
 
-- bei highscores müsste es auch einen button geben "nochmal spielen" - sehe ich jetzt nicht…
 
 - game over wird ja nur ganz kurz angezeigt, würde ich ganz weglassen und einfach springen zum Punktestand und der Möglichkeit sich einzutragen…  alternativ:Spielende für Gameover
 
-- TTS erstmal raus
 
 - next question: from automatic to a button
 
