@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { SettingsService } from './settings.service';
 
+import { environment } from './../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +14,7 @@ export class TtsService {
     this.ut = new SpeechSynthesisUtterance()
   }
   public say(message: string) {
-    if (this.settings.getTTS()) {
+    if (environment.flags.tts && this.settings.getTTS()) {
       this.ut.text = message;
       speechSynthesis.speak(this.ut)
     }

@@ -4,8 +4,43 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
+- welcome nicer -> icons, links
+
+- neue Frage einbauen (xlsx)
+
+- countdown entfernen
+
+- Schwierigkeitsgrade: leicht 10 punkte max, mittel 20, schwer 30
+- Neuer Grad: Gemischt (zufall)
+- Immer Schwierigkeitsgrad anzeigen
+- Highscore-Liste über alle. Schwierigkeit anzeigen
+- Wenn keine Frage mehr in Grad -> eins höher
+- Bei Schwer: Ende: Du hast alle Fragen beantwortet
+
+- Lied Lars für Highscores und Start
+- Gitarre-Only für Spiel
+- Sounds finden (Start, Countdown, Klick auf Frage)
+- Spiel Start: Das Spiel wird gestartet wie wäre hier so ne Art Fanfare? Trompetenmäßiger Einzug des Königs…so in der Art?
+- Countdown: Während des Countdowns Countdown würde ich wegnehmen
+- Frage Los: Zu Beginn einer Frage würde ich keinen extra Sound -einfach die Hintergrundmusik….
+- Frage Falsch: gibt es da einen Sound der nicht ganz sooo "hart" klingt? :)
+- Game Over: Wenn die Leben verbraucht sind kein Sound - gleich punkte anzeigen und Frage Eintrag zur Highscore
+- Hintergrund-Musik Start: Läuft auf der Startseite und in den Highscores	Lied: die Bibel die ist Gottes Wort
+- Hintergrund-Musik Spiel: Läuft während des SpielsLied: die Bibel die ist Gottes Wort - als Karaoke-Version - ohne Gesang…
+
+- bei highscores müsste es auch einen button geben "nochmal spielen" - sehe ich jetzt nicht…
+
+- game over wird ja nur ganz kurz angezeigt, würde ich ganz weglassen und einfach springen zum Punktestand und der Möglichkeit sich einzutragen…  alternativ:Spielende für Gameover
+
+- TTS erstmal raus
+
+- next question: from automatic to a button
+
+- add question.bible to auswertung
+
 - save questions in localstorage
 - save difficulties in localstorage
+- https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event
 - if online, check a hash and try to reload them if needed
 - if offline:
   - disable highscores
