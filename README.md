@@ -4,6 +4,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
+- impressum und datenschutz auf main
+
+- add nice changelog like signal
+
 - neue Fragen + bibelstellen einbauen (xlsx)
 
 - refactor some functions in game
