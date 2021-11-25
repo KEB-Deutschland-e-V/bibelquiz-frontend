@@ -45,3 +45,4 @@ testem.log
 Thumbs.db
 
 deploy.sh
+build.sh

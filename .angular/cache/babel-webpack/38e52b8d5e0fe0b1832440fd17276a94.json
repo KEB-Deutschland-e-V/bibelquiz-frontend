@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const environment = {\n  production: true,\n  backend: 'https://api.dasbibelquiz.de',\n  flags: {\n    tts: false,\n    countdown: false\n  }\n};","map":null,"metadata":{},"sourceType":"module"}

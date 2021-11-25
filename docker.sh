@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker build -t bibelquiz/frontend:latest . 
+docker pull dsigmund/bibelquiz-frontend
 
 docker stop bibelquiz-frontend || :
 
@@ -10,4 +10,4 @@ docker run \
 --name bibelquiz-frontend \
 --restart unless-stopped \
 --publish "${BQ_FRONTEND_PORT}":8080 \
--d bibelquiz/frontend:latest
+-d dsigmund/bibelquiz-frontend:latest
