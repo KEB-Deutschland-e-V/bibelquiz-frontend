@@ -1,23 +1,26 @@
 <div *ngIf="state === 'Start'">
-  <h2>Wähle deinen Schwierigkeitsgrad</h2>
+  <h2>Wähle deinen Anfangs-Schwierigkeitsgrad:</h2>
   <button mat-raised-button color="primary" class="big-button" (click)="setDifficulty(d)" *ngFor="let d of difficulties">
     {{d.name}}
   </button>
+  <p>Frage in höheren Schwierigkeitsgraden geben mehr Punkte!</p>
+  <!-- TODO: add Button Random -->
 </div>
 <div *ngIf="state === 'Countdown'">
   <h2 id="countdown">{{countdown}}</h2>
 </div>
 <div *ngIf="state === 'Game'">
-  <div id="status">
-    <span id="score">
-      Punkte: {{points}}
-    </span>
-    <span id="lives">
-      <span *ngFor="let l of [].constructor(lives)">
-        <mat-icon matRipple >favorite</mat-icon>
-      </span>
-    </span>
-  </div>
+  <table id="status">
+    <tr>
+      <td id="score" style="text-align: left;">Punkte: {{points}}</td>
+      <td id="difficulty" style="text-align: center;">{{question.difficulty_name}}</td>
+      <td id="lives"  style="text-align: right;">
+        <span *ngFor="let l of [].constructor(lives)">
+          <mat-icon matRipple >favorite</mat-icon>
+        </span>
+      </td>
+    </tr>
+  </table>
   <p>{{question.question}}</p>
   <p>{{pointsForQuestion}}</p>
   <app-answer [answer]="question.answer_1" [state]="answerState.answer_1" (click)="chooseAnswer(1)"></app-answer>
@@ -27,6 +30,11 @@
 </div>
 <div *ngIf="showResult" id="result" [ngClass]="{'wrong': result.state=='wrong', 'right': result.state=='right'}">
   {{result.text}}
+  <br/>
+  <span *ngIf="result.state=='wrong'">{{question.bible}}</span>
+  <span *ngIf="result.state=='right'">{{pointsForQuestion}} Punkte!</span>
+  <br/>
+  <button mat-raised-button color="primary" (click)="nextQuestion()" style="z-index: 130;">Nächste Frage</button>
 </div>
 <div *ngIf="state === 'Highscore'">
   <p>Herzlichen Glückwunsch, du hast {{points}} Punkte!</p>

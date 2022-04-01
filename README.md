@@ -4,38 +4,34 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
-- impressum und datenschutz auf main
+### Durchgehender mode
 
-- add nice changelog like signal
-
-- neue Fragen + bibelstellen einbauen (xlsx)
-
-- refactor some functions in game
-
-- Schwierigkeitsgrade: leicht 10 punkte max, mittel 20, schwer 30 ( -> add to database)
-- Neuer Grad: Gemischt (zufall)
-- Immer Schwierigkeitsgrad anzeigen
-- Highscore-Liste über alle. Schwierigkeit anzeigen
+- Highscore-Liste über alle. > TEST
 - Wenn keine Frage mehr in Grad -> eins höher
 - Bei Schwer: Ende: Du hast alle Fragen beantwortet
+- game over ( add flag)
+
+
+### Sounds
 
 - Spiel Start: Das Spiel wird gestartet wie wäre hier so ne Art Fanfare? Trompetenmäßiger Einzug des Königs…so in der Art?
 - Frage Falsch: gibt es da einen Sound der nicht ganz sooo "hart" klingt? :)
 - Hintergrund-Musik Start: Läuft auf der Startseite und in den Highscores	Lied: die Bibel die ist Gottes Wort
 - Hintergrund-Musik Spiel: Läuft während des SpielsLied: die Bibel die ist Gottes Wort - als Karaoke-Version - ohne Gesang…
 
-- game over ( add flag)
+### Offline Mode
 
-- next question: from automatic to a button
-- add question.bible to auswertung
-
-- save questions in localstorage
-- save difficulties in localstorage
 - https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event
 - if online, check a hash and try to reload them if needed
 - if offline:
   - disable highscores
   - disable posting Stats and highscores
+
+### Next
+
+- add nice changelog like signal
+- refactor some functions in game
+- Neuer Grad: Gemischt (zufall)
 
 ## Development server
 

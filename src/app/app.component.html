@@ -7,6 +7,8 @@
     <img src="assets/images/logo_bibelquiz_auf_rot.png" alt="Logo" class="logo" [routerLink]="['/welcome']"/>
     <span class="spaced" [routerLink]="['/welcome']" id="mainlink">KEB BibelQuiz</span>
     <span class="spacer"></span>
+    <span class="spaced" [routerLink]="['/impressum']" id="mainlink">Impressum</span>
+    <span class="spaced" [routerLink]="['/datenschutz']" id="mainlink">Datenschutz</span>
     <button mat-icon-button>
       <mat-icon (click)="settingsMenu.toggle()" *ngIf="!settingsMenu.opened">settings</mat-icon>
       <mat-icon (click)="settingsMenu.toggle()" *ngIf="settingsMenu.opened">close</mat-icon>
@@ -19,9 +21,6 @@
         <a mat-list-item [routerLink]="'/welcome'" (click)="sidenav.toggle()"> Start </a>
         <a mat-list-item [routerLink]="'/game'" (click)="sidenav.toggle()"> Spiel </a>
         <a mat-list-item [routerLink]="'/highscores'" (click)="sidenav.toggle()"> Highscores </a>
-        <hr/>
-        <a mat-list-item [routerLink]="'/impressum'" (click)="sidenav.toggle()"> Impressum </a>
-        <a mat-list-item [routerLink]="'/datenschutz'" (click)="sidenav.toggle()"> Datenschutz </a>
         <hr/>
         <a mat-list-item href="https://www.keb-de.org/" target="_blank"> KEB-Deutschland e.V. </a>
         <a mat-list-item href="https://webdad.eu" target="_blank"> WebDaD.eu</a>

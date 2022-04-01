@@ -71,6 +71,7 @@ export class GameComponent implements OnInit {
     this.countdown = this.config.countdown;
     this.lives = this.config.lives;
     this.question = this.backend.getRandomQuestion(this.difficulty);
+    this.pointsForQuestion = this.difficulty.points;
     this.usedQuestions.push(this.question.id);
     this.name = localStorage.getItem("name") || ''
 
@@ -195,26 +196,10 @@ export class GameComponent implements OnInit {
         break;
     }
 
+    // TODO: remove this!
     setTimeout(() => { // Wait 4 seconds
-      if (this.lives > 0) {
-        this.showResult = false;
-        if (this.canvas) {
-          this.myConfetti.reset();
-          this.renderer2.removeChild(this.elementRef.nativeElement, this.canvas)
-        }
-        this.answerState.answer_1 = AnswerState.Select;
-        this.answerState.answer_2 = AnswerState.Select;
-        this.answerState.answer_3 = AnswerState.Select;
-        this.answerState.answer_4 = AnswerState.Select;
-        this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
-        this.usedQuestions.push(this.question.id);
-        this.pointsForQuestion = this.maxPointsPerQuestion;
-        this.readQuestion(this.question)
-        this.pointsInterval = setInterval(() => {
-          if(this.pointsForQuestion > 1) {
-            this.pointsForQuestion--;
-          }
-        }, this.pointLossTime);
+      if (this.lives > 0) { // TODO: this part should be called on answer
+        
       } else {
         this.result.text = 'Spielende'
         setTimeout(()=> {
@@ -223,6 +208,29 @@ export class GameComponent implements OnInit {
         }, 1000)
       }
     }, 4000)
+  }
+  public nextQuestion() {
+    this.showResult = false;
+    if (this.canvas) {
+      this.myConfetti.reset();
+      this.renderer2.removeChild(this.elementRef.nativeElement, this.canvas)
+    }
+    this.answerState.answer_1 = AnswerState.Select;
+    this.answerState.answer_2 = AnswerState.Select;
+    this.answerState.answer_3 = AnswerState.Select;
+    this.answerState.answer_4 = AnswerState.Select;
+    this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
+    // TODO: if no questions are left:
+    // TODO: get higher difficulty, show beforehand
+    // TODO: if no higher difficulty is available: Game Over
+    this.usedQuestions.push(this.question.id);
+    this.pointsForQuestion = this.difficulty.points;
+    this.readQuestion(this.question)
+    this.pointsInterval = setInterval(() => {
+      if(this.pointsForQuestion > 1) {
+        this.pointsForQuestion--;
+      }
+    }, this.pointLossTime);
   }
   public surprise(): void {
     if (this.settings.getAnimations()) {
