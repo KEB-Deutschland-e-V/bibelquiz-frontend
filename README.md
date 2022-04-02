@@ -6,8 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Durchgehender mode
 
-- Wenn keine Frage mehr in Grad -> eins höher
-- Bei Schwer: Ende: Du hast alle Fragen beantwortet
+- Wenn keine Frage mehr in Grad -> eins höher > test
+- Bei Schwer: Ende: Du hast alle Fragen beantwortet > test
 
 ### Sounds
 
@@ -19,6 +19,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ### Offline Mode
 
 - https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event
+- https://dev.to/the_thinkster/how-to-detect-if-a-user-is-online-offline-with-angular-rxjs-48cm
 - if online, check a hash and try to reload them if needed
 - if offline:
   - disable highscores
@@ -27,7 +28,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ### Next
 
 - add nice changelog like signal
-- refactor some functions in game
 - Neuer Grad: Gemischt (zufall)
 
 ## Development server

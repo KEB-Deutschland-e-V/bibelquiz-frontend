@@ -55,7 +55,11 @@ export class BackendService {
     const filtered = this.questions.filter((q) => {
       return q.difficulty === parseInt(difficulty.id) && !usedIDs.includes(q.id)
     })
-    return filtered[Math.floor(Math.random()*filtered.length)];
+    if (filtered.length > 0) {
+      return filtered[Math.floor(Math.random()*filtered.length)];
+    } else {
+      return null;
+    }
   }
 
   public getDifficulties(): Difficulty[] {

@@ -23,6 +23,8 @@ export class GameComponent implements OnInit {
 
 
   state: GameState = GameState.Start;
+  showNextDifficulty: boolean = false;
+  noMoreQuestions: boolean = false;
   difficulties: Difficulty[] = [];
   difficulty: Difficulty;
   config = {
@@ -38,7 +40,7 @@ export class GameComponent implements OnInit {
   countdownInterval: any;
   lives;
   questionNumber = 0;
-  question: Question;
+  question: Question | null;
   usedQuestions: string[] = []; //ids of questions that have been used in this round
   answerState = {
     answer_1: AnswerState.Select,
@@ -72,7 +74,9 @@ export class GameComponent implements OnInit {
     this.lives = this.config.lives;
     this.question = this.backend.getRandomQuestion(this.difficulty);
     this.pointsForQuestion = this.difficulty.points;
-    this.usedQuestions.push(this.question.id);
+    if (this.question) {
+      this.usedQuestions.push(this.question.id);
+    }
     this.name = localStorage.getItem("name") || ''
 
     if(!environment.production) {
@@ -120,7 +124,13 @@ export class GameComponent implements OnInit {
       }, 1000);
     } else {
       this.state = GameState.Game;
-      this.readQuestion(this.question)
+      this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
+      if (this.question) {
+        this.usedQuestions.push(this.question.id);
+        this.pointsForQuestion = this.difficulty.points;
+        this.readQuestion(this.question)
+      }
+      
       this.pointsInterval = setInterval(() => {
         if(this.pointsForQuestion > 1) {
           this.pointsForQuestion--;
@@ -136,7 +146,12 @@ export class GameComponent implements OnInit {
     } else {
       clearInterval(this.countdownInterval);
       this.state = GameState.Game;
-      this.readQuestion(this.question)
+      this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
+      if (this.question) {
+        this.usedQuestions.push(this.question.id);
+        this.pointsForQuestion = this.difficulty.points;
+        this.readQuestion(this.question)
+      }
       this.pointsInterval = setInterval(() => {
         if(this.pointsForQuestion > 1) {
           this.pointsForQuestion--;
@@ -150,7 +165,7 @@ export class GameComponent implements OnInit {
     }
     clearInterval(this.pointsInterval);
     this.showResult = true;
-    if (this.question.answer === answer) {
+    if (this.question && this.question.answer === answer) {
       this.questionNumber++
       this.points += this.pointsForQuestion;
       this.result.state = 'right';
@@ -164,12 +179,12 @@ export class GameComponent implements OnInit {
       this.result.text = 'Leider Falsch!'
       this.sounds.wrong();
       this.tts.stop();
-      this.tts.say(this.result.text + ' Richtig wäre gewesen: ' + this.getAnswer(this.question));
+      this.tts.say(this.result.text + ' Richtig wäre gewesen: ' + this.getAnswer(this.question!));
       this.lives--;
     }
-    this.backend.postStats(this.question, answer, this.result.state === 'right').subscribe();
+    this.backend.postStats(this.question!, answer, this.result.state === 'right').subscribe();
 
-    switch(this.question.answer) {
+    switch(this.question!.answer) {
       case 1:
         this.answerState.answer_1 = AnswerState.Right;
         this.answerState.answer_2 = AnswerState.Wrong;
@@ -211,17 +226,35 @@ export class GameComponent implements OnInit {
     this.answerState.answer_3 = AnswerState.Select;
     this.answerState.answer_4 = AnswerState.Select;
     this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
-    // TODO: if no questions are left:
-    // TODO: get higher difficulty, show beforehand
-    // TODO: if no higher difficulty is available: Game Over
-    this.usedQuestions.push(this.question.id);
-    this.pointsForQuestion = this.difficulty.points;
-    this.readQuestion(this.question)
-    this.pointsInterval = setInterval(() => {
-      if(this.pointsForQuestion > 1) {
-        this.pointsForQuestion--;
+    if (this.question) {
+      this.usedQuestions.push(this.question.id);
+      this.pointsForQuestion = this.difficulty.points;
+      this.readQuestion(this.question)
+      this.pointsInterval = setInterval(() => {
+        if(this.pointsForQuestion > 1) {
+          this.pointsForQuestion--;
+        }
+      }, this.pointLossTime);
+    } else { // no question for difficulty
+      if (this.difficulty.name !== 'Schwer') { // next difficulty, show button
+        this.showNextDifficulty = true;
+      } else { // TODO: gameover, but positive!
+
       }
-    }, this.pointLossTime);
+    }
+  
+  }
+  public nextDifficulty() {
+    this.showNextDifficulty = false;
+    switch(this.difficulty.name) {
+      case 'Leicht':
+        this.difficulty = this.difficulties[1];
+        break;
+      case 'Mittel':
+        this.difficulty = this.difficulties[2];
+        break;
+    }
+    this.nextQuestion();
   }
   public surprise(): void {
     if (this.settings.getAnimations()) {
