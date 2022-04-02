@@ -34,7 +34,8 @@
   <span *ngIf="result.state=='wrong'">{{question.bible}}</span>
   <span *ngIf="result.state=='right'">{{pointsForQuestion}} Punkte!</span>
   <br/>
-  <button mat-raised-button color="primary" (click)="nextQuestion()" style="z-index: 130;">Nächste Frage</button>
+  <button *ngIf="lives > 0" mat-raised-button color="primary" (click)="nextQuestion()" style="z-index: 130;">Nächste Frage</button>
+  <button *ngIf="lives === 0" mat-raised-button color="primary" (click)="gameOver()" style="z-index: 130;">Spiel Vorbei</button>
 </div>
 <div *ngIf="state === 'Highscore'">
   <p>Herzlichen Glückwunsch, du hast {{points}} Punkte!</p>

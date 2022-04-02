@@ -195,19 +195,10 @@ export class GameComponent implements OnInit {
         this.answerState.answer_4 = AnswerState.Right;
         break;
     }
-
-    // TODO: remove this!
-    setTimeout(() => { // Wait 4 seconds
-      if (this.lives > 0) { // TODO: this part should be called on answer
-        
-      } else {
-        this.result.text = 'Spielende'
-        setTimeout(()=> {
-          this.showResult = false;
-          this.state = GameState.Highscore;
-        }, 1000)
-      }
-    }, 4000)
+  }
+  public gameOver() {
+    this.showResult = false;
+    this.state = GameState.Highscore;
   }
   public nextQuestion() {
     this.showResult = false;

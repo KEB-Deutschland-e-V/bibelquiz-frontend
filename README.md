@@ -6,11 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Durchgehender mode
 
-- Highscore-Liste über alle. > TEST
 - Wenn keine Frage mehr in Grad -> eins höher
 - Bei Schwer: Ende: Du hast alle Fragen beantwortet
-- game over ( add flag)
-
 
 ### Sounds
 
