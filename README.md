@@ -4,18 +4,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
-### Durchgehender mode
-
-- Wenn keine Frage mehr in Grad -> eins höher > test
-- Bei Schwer: Ende: Du hast alle Fragen beantwortet > test
-
-### Sounds
-
-- Spiel Start: Das Spiel wird gestartet wie wäre hier so ne Art Fanfare? Trompetenmäßiger Einzug des Königs…so in der Art?
-- Frage Falsch: gibt es da einen Sound der nicht ganz sooo "hart" klingt? :)
-- Hintergrund-Musik Start: Läuft auf der Startseite und in den Highscores	Lied: die Bibel die ist Gottes Wort
-- Hintergrund-Musik Spiel: Läuft während des SpielsLied: die Bibel die ist Gottes Wort - als Karaoke-Version - ohne Gesang…
-
 ### Offline Mode
 
 - https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event

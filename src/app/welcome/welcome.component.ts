@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { BgmService } from '../services/bgm.service';
 
 
 
@@ -11,12 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class WelcomeComponent implements OnInit {
 
 
-  constructor() { 
+  constructor( private bgm: BgmService) { 
   }
 
   
 
   ngOnInit(): void {
+    this.bgm.theme();
   }
 
 }

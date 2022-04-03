@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import packageInfo from '../../package.json';
 import { SettingsService } from './services/settings.service';
 
+import { BgmService } from './services/bgm.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent {
   };
   constructor(
     private settingsService: SettingsService, 
+    private bgm: BgmService
   ){
     this.settings.sound = this.settingsService.getSound();
     this.settings.animations = this.settingsService.getAnimations();
@@ -31,7 +33,14 @@ export class AppComponent {
       case 'tts': this.settings.tts = this.settingsService.getTTS(); break;
       case 'animations': this.settings.animations = this.settingsService.getAnimations(); break;
       case 'sound': this.settings.sound = this.settingsService.getSound(); break;
-      case 'music': this.settings.music = this.settingsService.getMusic(); break;
+      case 'music': 
+        this.settings.music = this.settingsService.getMusic(); 
+        if (this.settings.music) {
+          this.bgm.theme();
+        } else {
+          this.bgm.stop();
+        }
+        break;
     }
   }
 }

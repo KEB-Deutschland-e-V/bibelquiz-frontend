@@ -8,6 +8,7 @@ import { environment } from './../../environments/environment';
 
 import * as confetti from 'canvas-confetti';
 import { SoundService } from '../services/sound.service';
+import { BgmService } from '../services/bgm.service';
 import { TtsService } from '../services/tts.service';
 import { ActivatedRoute } from '@angular/router';
 import { SettingsService } from '../services/settings.service';
@@ -66,7 +67,8 @@ export class GameComponent implements OnInit {
     private sounds: SoundService,
     private tts: TtsService,
     private route: ActivatedRoute,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private bgm: BgmService
     ) { 
     this.difficulties = this.backend.getDifficulties();
     this.difficulty = this.difficulties[0];
@@ -123,6 +125,8 @@ export class GameComponent implements OnInit {
         this.count();
       }, 1000);
     } else {
+      this.sounds.start();
+      this.bgm.bgm();
       this.state = GameState.Game;
       this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
       if (this.question) {

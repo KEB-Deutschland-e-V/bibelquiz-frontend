@@ -5,6 +5,8 @@ import { SettingsService } from './settings.service';
   providedIn: 'root'
 })
 export class SoundService {
+  bgmAudio: any;
+  themeAudio: any;
 
   constructor(
     private settings: SettingsService
@@ -15,6 +17,9 @@ export class SoundService {
       audio.src = src;
       audio.load();
       audio.play();
+      return audio;
+    } else {
+      return null;
     }
   }
   public correct() {
@@ -22,5 +27,8 @@ export class SoundService {
   }
   public wrong() {
     this.playAudio('assets/sounds/wrong.mp3')
+  }
+  public start() {
+    this.playAudio('assets/sounds/start.mp3')
   }
 }

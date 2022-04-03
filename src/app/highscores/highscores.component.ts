@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService, Difficulty } from '../services/backend.service';
 import { Highscore, HighscoreService } from '../services/highscore.service';
+import { BgmService } from '../services/bgm.service';
 
 @Component({
   selector: 'app-highscores',
@@ -14,7 +15,8 @@ export class HighscoresComponent implements OnInit {
   diffWithScores: any = [];
   constructor(
     private backend: BackendService,
-    private highscoreService: HighscoreService
+    private highscoreService: HighscoreService,
+    private bgm: BgmService
     ) {
     this.difficulties = this.backend.getDifficulties();
     this.highscoreService.getHighscores().subscribe((data: any) => {
@@ -28,6 +30,7 @@ export class HighscoresComponent implements OnInit {
 
   
   ngOnInit(): void {
+    this.bgm.theme();
   }
 
 }

@@ -8,7 +8,8 @@ export class SettingsService {
   private animations:boolean = true;
   private tts:boolean = true;
   private music:boolean = true;
-  constructor() { 
+  constructor(
+  ) { 
     this.sound = JSON.parse(localStorage.getItem('sound') || 'true');
     this.animations = JSON.parse(localStorage.getItem('animations') || 'true');
     this.tts = JSON.parse(localStorage.getItem('tts') || 'true');
@@ -37,7 +38,9 @@ export class SettingsService {
       case 'sound': this.sound = value; break;
       case 'animations': this.animations = value; break;
       case 'tts': this.tts = value; break;
-      case 'music': this.music = value; break;
+      case 'music': 
+        this.music = value; 
+        break;
     }
   }
 }
