@@ -238,10 +238,11 @@ export class GameComponent implements OnInit {
         }
       }, this.pointLossTime);
     } else { // no question for difficulty
+      
       if (this.difficulty.name !== 'Schwer') { // next difficulty, show button
         this.showNextDifficulty = true;
       } else { // TODO: gameover, but positive!
-
+        this.noMoreQuestions = true
       }
     }
   

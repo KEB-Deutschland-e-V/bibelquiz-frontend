@@ -22,25 +22,25 @@
     </tr>
   </table>
   <p *ngIf="question">{{question.question}}</p>
-  <p>{{pointsForQuestion}}</p>
+  <p *ngIf="question">{{pointsForQuestion}}</p>
   <app-answer *ngIf="question" [answer]="question.answer_1" [state]="answerState.answer_1" (click)="chooseAnswer(1)"></app-answer>
   <app-answer *ngIf="question" [answer]="question.answer_2" [state]="answerState.answer_2" (click)="chooseAnswer(2)"></app-answer>
   <app-answer *ngIf="question" [answer]="question.answer_3" [state]="answerState.answer_3" (click)="chooseAnswer(3)"></app-answer>
   <app-answer *ngIf="question" [answer]="question.answer_4" [state]="answerState.answer_4" (click)="chooseAnswer(4)"></app-answer>
 </div>
-<div *ngIf="showResult" id="result" [ngClass]="{'wrong': result.state=='wrong', 'right': result.state=='right'}">
+<div *ngIf="showResult || showNextDifficulty || noMoreQuestions" id="result" [ngClass]="{'wrong': result.state=='wrong', 'right': result.state=='right'}">
   {{result.text}}
   <br/>
   <span *ngIf="(result.state=='wrong' || result.state=='right')  && question">{{question.bible}}</span>
   <br/>
   <span *ngIf="result.state=='right'">{{pointsForQuestion}} Punkte!</span>
   <br/>
-  <span *ngIf="showNextDifficulty">Keine Fragen mehr im aktuellen Schwierigkeitsgrad!</span>
-  <span *ngIf="noMoreQuestions">Keine Fragen mehr! Glückwunsch!</span>
+  <span *ngIf="showNextDifficulty === true">Keine Fragen mehr im aktuellen Schwierigkeitsgrad!</span>
+  <span *ngIf="noMoreQuestions === true">Keine Fragen mehr! Glückwunsch!</span>
   <br/>
-  <button *ngIf="showNextDifficulty" mat-raised-button color="primary" (click)="nextDifficulty()" style="z-index: 130;">Höhere Schwierigkeit</button>
-  <button *ngIf="lives > 0" mat-raised-button color="primary" (click)="nextQuestion()" style="z-index: 130;">Nächste Frage</button>
-  <button *ngIf="lives === 0 || noMoreQuestions" mat-raised-button color="primary" (click)="gameOver()" style="z-index: 130;">Spiel Vorbei</button>
+  <button *ngIf="showNextDifficulty === true" mat-raised-button color="primary" (click)="nextDifficulty()" style="z-index: 130;">Höhere Schwierigkeit</button>
+  <button *ngIf="lives > 0 && showNextDifficulty !== true && noMoreQuestions !== true" mat-raised-button color="primary" (click)="nextQuestion()" style="z-index: 130;">Nächste Frage</button>
+  <button *ngIf="lives === 0 || noMoreQuestions === true" mat-raised-button color="primary" (click)="gameOver()" style="z-index: 130;">Spiel Vorbei</button>
 </div>
 <div *ngIf="state === 'Highscore'">
   <p>Herzlichen Glückwunsch, du hast {{points}} Punkte!</p>
