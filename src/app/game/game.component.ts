@@ -21,8 +21,6 @@ import { SettingsService } from '../services/settings.service';
 })
 export class GameComponent implements OnInit {
 
-
-
   state: GameState = GameState.Start;
   showNextDifficulty: boolean = false;
   noMoreQuestions: boolean = false;
@@ -298,7 +296,6 @@ export class GameComponent implements OnInit {
     });
   }
   public doNotInputHighscore(): void {
-  
     this.entry = false;
     this.state = GameState.Again; 
   }
@@ -322,6 +319,14 @@ export class GameComponent implements OnInit {
       case 4: return question.answer_4;
       default: return 'Error';
     }
+  }
+  public playAgain() {
+    this.state = GameState.Start;
+    this.usedQuestions = [];
+    this.lives = 3;
+    this.points = 0;
+    this.questionNumber = 0;
+    this.nextQuestion();
   }
 }
 enum GameState {

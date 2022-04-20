@@ -1,0 +1,99 @@
+{
+  "configVersion": 1,
+  "timestamp": 1649674266579,
+  "index": "./index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "./index.html",
+        "./main.6f929bfb0cfac1e4.js",
+        "./manifest.webmanifest",
+        "./polyfills.8e591707cfaa9d0d.js",
+        "./runtime.aaedba49815d2ab0.js",
+        "./styles.6ca5a1f2cb23e518.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "./assets/images/android-chrome-192x192.png",
+        "./assets/images/android-chrome-512x512.png",
+        "./assets/images/apple-touch-icon.png",
+        "./assets/images/baustelle.png",
+        "./assets/images/browserconfig.xml",
+        "./assets/images/favicon-16x16.png",
+        "./assets/images/favicon-32x32.png",
+        "./assets/images/favicon.ico",
+        "./assets/images/logo_bibelquiz.png",
+        "./assets/images/logo_bibelquiz_auf_rot.png",
+        "./assets/images/mstile-150x150.png",
+        "./assets/images/safari-pinned-tab.svg",
+        "./assets/images/site.webmanifest",
+        "./assets/sounds/bibel_gottes_wort.mp3",
+        "./assets/sounds/bibel_gottes_wort_ohne_vocals.mp3",
+        "./assets/sounds/correct.mp3",
+        "./assets/sounds/start.mp3",
+        "./assets/sounds/wrong.mp3"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "./assets/images/android-chrome-192x192.png": "9e070f0d00b6584783520b55a864a6f498e766ac",
+    "./assets/images/android-chrome-512x512.png": "4090df863162a7ece75447519106b6ad886c41ba",
+    "./assets/images/apple-touch-icon.png": "18b5a1b91681ec83c94f1a46aac46f57dede626c",
+    "./assets/images/baustelle.png": "c91fa45dbb16eb418a3cbfa22b0b291e4e093689",
+    "./assets/images/browserconfig.xml": "caa70ef1fc21c40f0cad6d6de73cc542b7577a87",
+    "./assets/images/favicon-16x16.png": "1311d2ea509aba13895aec7c3ae5a225ccfd1e27",
+    "./assets/images/favicon-32x32.png": "f206d768c16e4b8cd932c8edc234fdafec683672",
+    "./assets/images/favicon.ico": "32cac4c837b94d8ab9d9085d604ba2b41575b2be",
+    "./assets/images/logo_bibelquiz.png": "ff1005f67d7e82b96856c01db09e0a18d8f51ec7",
+    "./assets/images/logo_bibelquiz_auf_rot.png": "41d4869665c4f986e0c3479f304192d1bcd12997",
+    "./assets/images/mstile-150x150.png": "382e44edf5c8c87e2d4e24eec9a1aa021610314a",
+    "./assets/images/safari-pinned-tab.svg": "cdb3f2079f7247842e8b7792a46efea5874edf06",
+    "./assets/images/site.webmanifest": "c31c9177841e8b9de6b818105dca9af1316c3e44",
+    "./assets/sounds/bibel_gottes_wort.mp3": "cda917fe4a4701875c2ecdd843f7a499ac3d40ad",
+    "./assets/sounds/bibel_gottes_wort_ohne_vocals.mp3": "07db5b27d108c979b68691f3a9f0fc3378f687e2",
+    "./assets/sounds/correct.mp3": "e4e2a7a74f00c3cfaee8acca26c5b6cacbced0e4",
+    "./assets/sounds/start.mp3": "e26d7f89f692361c1bdebe9aa3f843d5f4cc3060",
+    "./assets/sounds/wrong.mp3": "9407c6e8266a847ed466bd68bd1f165fdfa8e8ea",
+    "./index.html": "96d73c6cc38fd27787989e3f8f2f5ce6c49249dc",
+    "./main.6f929bfb0cfac1e4.js": "9d4ea6df65581100d7d5787213c1cccf1d2d6cb6",
+    "./manifest.webmanifest": "63b272452f7323ec09705c84044faa394ce82a79",
+    "./polyfills.8e591707cfaa9d0d.js": "02673aa40c06319f0fb9058746059414c85f9363",
+    "./runtime.aaedba49815d2ab0.js": "5102a8047451219bb63fd92e7de91758d13e20ad",
+    "./styles.6ca5a1f2cb23e518.css": "6722d30ad9d9b21452aa8f722c569cf117554573"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

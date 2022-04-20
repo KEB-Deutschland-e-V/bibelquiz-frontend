@@ -60,7 +60,7 @@
 <div *ngIf="state === 'Again'">
   <p *ngIf="entry === true">Danke für deinen Eintrag!</p>
   <p *ngIf="entry === false">&nbsp;</p>
-  <button mat-raised-button color="primary" class="big-button" [routerLink]="['/spiel']" >
+  <button mat-raised-button color="primary" class="big-button" (click)="playAgain()" >
     Nochmal Spielen!
   </button>
   <br/>

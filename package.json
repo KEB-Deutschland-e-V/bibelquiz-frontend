@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "cordova": "ng build --base-href . --configuration=production --output-path=native/www",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
