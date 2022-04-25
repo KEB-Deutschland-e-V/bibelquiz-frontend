@@ -43,8 +43,10 @@ RUN rm -rf /usr/share/nginx/html/*
 # copy artifact build from the 'build environment'
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# copy version file
+# copy version files
 COPY --from=builder /app/version.txt /usr/share/nginx/version/version.txt
+COPY --from=builder /app/version.json /usr/share/nginx/version/version.json
+COPY --from=builder /app/version_motor.json /usr/share/nginx/version/version_motor.json
 
 # copy nginx conf
 COPY nginx.conf /etc/nginx/conf.d/nginx.conf
