@@ -25,8 +25,10 @@ COPY . /app
 # generate build
 RUN ng build --configuration=production --output-path=dist
 
-# Create Version file
+# Create Version files
 RUN echo "$(jq -r '.version' package.json)" > version.txt
+RUN echo "{\"version\":$(jq -r '.version' package.json)}" > version.json
+RUN echo "[{\"version\":$(jq -r '.version' package.json)}]" > version_motor.json
 
 ############
 ### prod ###
