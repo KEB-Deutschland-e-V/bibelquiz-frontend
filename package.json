@@ -1,12 +1,12 @@
 {
   "name": "frontend",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "docker-build":"sh build.sh",
-    "deploy":"sh deploy.sh",
+    "docker-build": "sh build.sh",
+    "deploy": "sh deploy.sh",
     "cordova": "ng build --base-href . --configuration=production --output-path=native/www",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
