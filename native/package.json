@@ -15,15 +15,13 @@
   "devDependencies": {
     "cordova-android": "^10.1.1",
     "cordova-electron": "^3.0.0",
-    "cordova-ios": "^6.2.0",
-    "cordova-osx": "^6.0.0"
+    "cordova-ios": "^6.2.0"
   },
   "cordova": {
     "platforms": [
       "android",
       "ios",
-      "electron",
-      "osx"
+      "electron"
     ]
   }
 }

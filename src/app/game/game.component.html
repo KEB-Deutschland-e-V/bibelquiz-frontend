@@ -4,6 +4,9 @@
     {{d.name}}
   </button>
   <p>Frage in höheren Schwierigkeitsgraden geben mehr Punkte!</p>
+  <p>
+    <small>Meine Antworten werden anonym zur Verbesserung der Qualität gespeichert.</small>
+  </p>
   <!-- TODO: add Button Random -->
 </div>
 <div *ngIf="state === 'Countdown'">
@@ -56,6 +59,9 @@
   <button mat-raised-button color="primary" class="half-button" (click)="doNotInputHighscore()" >
     Nein Danke
   </button>
+  <p>
+    <small>Mit dem Absenden des Highscores mit meinem Namen willige ich ein, dass der Name mit Punktzahl und Zeitstempel in der Datenbank eingetragen wird.</small>
+  </p>
 </div>
 <div *ngIf="state === 'Again'">
   <p *ngIf="entry === true">Danke für deinen Eintrag!</p>
