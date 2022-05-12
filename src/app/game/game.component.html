@@ -48,9 +48,10 @@
 <div *ngIf="state === 'Highscore'">
   <p>Herzlichen Glückwunsch, du hast {{points}} Punkte!</p>
   <p>Möchtest du diese in die Highscore-Liste eintragen?</p>
-  <mat-form-field id="nameInput" appearance="legacy">
-    <mat-label>Dein Name:</mat-label>
-    <input matInput placeholder="Dein Name" [(ngModel)]="name"/>
+  <mat-form-field id="nameInput" appearance="standard">
+    <mat-label>Name:</mat-label>
+    <input type="text" matInput [(ngModel)]="name" autofocus/>
+    <mat-hint>Dein richtiger oder besser noch ein ausgedachter Name</mat-hint>
   </mat-form-field>
   <br/>
   <button mat-raised-button color="primary" class="half-button" (click)="inputHighscore()" >
