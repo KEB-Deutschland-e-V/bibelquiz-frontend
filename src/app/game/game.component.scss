@@ -62,10 +62,10 @@
   left:0;
   z-index:120;
 }
-mat-label {
+mat-label, mat-hint {
   color:black;
 }
 #nameInput {
- /*background-color: #cdcdcd;*/
- /*border: 2px solid #cdcdcd;*/
+  width:60%;
+  margin-bottom: 20px;
 }
