@@ -6,13 +6,6 @@
     </button>
     <img src="assets/images/logo_bibelquiz_auf_rot.png" alt="Logo" class="logo" [routerLink]="['/welcome']"/>
     <span class="spaced" [routerLink]="['/welcome']" id="mainlink">KEB BibelQuiz</span>
-    <span class="spacer"></span>
-    <span class="spaced" [routerLink]="['/impressum']" id="mainlink">Impressum</span>
-    <span class="spaced" [routerLink]="['/datenschutz']" id="mainlink">Datenschutz</span>
-    <button mat-icon-button>
-      <mat-icon (click)="settingsMenu.toggle()" *ngIf="!settingsMenu.opened">settings</mat-icon>
-      <mat-icon (click)="settingsMenu.toggle()" *ngIf="settingsMenu.opened">close</mat-icon>
-    </button>
     
   </mat-toolbar>
   <mat-sidenav-container>
@@ -22,17 +15,6 @@
         <a mat-list-item [routerLink]="'/game'" (click)="sidenav.toggle()"> Spiel </a>
         <a mat-list-item [routerLink]="'/highscores'" (click)="sidenav.toggle()"> Highscores </a>
         <hr/>
-        <a mat-list-item href="https://www.keb-de.org/" target="_blank"> KEB-Deutschland e.V. </a>
-        <a mat-list-item href="https://webdad.eu" target="_blank"> WebDaD.eu</a>
-        <a mat-list-item href="https://github.com/KEB-Deutschland-e-V" target="_blank"> Source Code </a>
-        <hr/>
-        <mat-list-item>Version: {{version}}</mat-list-item>
-        <hr/>
-        <mat-list-item (click)="sidenav.toggle()">Close</mat-list-item>
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav #settingsMenu position="end">
-      <mat-list>
         <mat-list-item>
           <mat-slide-toggle [checked]="settings.tts" color="primary" (change)="toggle('tts')">Sprache</mat-slide-toggle>
         </mat-list-item>
@@ -46,8 +28,14 @@
           <mat-slide-toggle [checked]="settings.animations" color="primary" (change)="toggle('animations')">Animationen</mat-slide-toggle>
         </mat-list-item>
         <hr/>
-        <mat-list-item (click)="settingsMenu.toggle()">Close</mat-list-item>
-      </mat-list>
+        <a mat-list-item href="https://www.keb-de.org/" target="_blank"> KEB-Deutschland e.V. </a>
+        <a mat-list-item href="https://webdad.eu" target="_blank"> WebDaD.eu</a>
+        <a mat-list-item href="https://github.com/KEB-Deutschland-e-V" target="_blank"> Source Code </a>
+        <hr/>
+        <mat-list-item>Version: {{version}}</mat-list-item>
+        <hr/>
+        <mat-list-item (click)="sidenav.toggle()">Close</mat-list-item>
+      </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
       <main fxFlex>
@@ -55,4 +43,17 @@
       </main>
     </mat-sidenav-content>
   </mat-sidenav-container>
+  <footer>
+    <div class="footer">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>
+            <a href="/impressum" target="_blank">Impressum</a>
+            |
+            <a href="/datenschutz" target="_blank">Datenschutz</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>

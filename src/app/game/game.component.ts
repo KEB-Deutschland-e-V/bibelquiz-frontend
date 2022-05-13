@@ -50,7 +50,8 @@ export class GameComponent implements OnInit {
   showResult = false;
   result = {
     state: 'right',
-    text: ''
+    text: '',
+    correct: ''
   };
   myConfetti: any;
   canvas: any;
@@ -179,9 +180,10 @@ export class GameComponent implements OnInit {
     } else {
       this.result.state = 'wrong';
       this.result.text = 'Leider Falsch!'
+      this.result.correct = ' Richtig wäre gewesen: ' + this.getAnswer(this.question || undefined)
       this.sounds.wrong();
       this.tts.stop();
-      this.tts.say(this.result.text + ' Richtig wäre gewesen: ' + this.getAnswer(this.question!));
+      this.tts.say(this.result.text + ' Richtig wäre gewesen: ' + this.getAnswer(this.question || undefined));
       this.lives--;
     }
     this.backend.postStats(this.question!, answer, this.result.state === 'right').subscribe();
@@ -312,13 +314,17 @@ export class GameComponent implements OnInit {
       + ', D, ' + question.answer_4
     )
   }
-  private getAnswer(question: Question): string {
-    switch(question.answer) {
-      case 1: return question.answer_1;
-      case 2: return question.answer_2;
-      case 3: return question.answer_3;
-      case 4: return question.answer_4;
-      default: return 'Error';
+  private getAnswer(question?: Question): string {
+    if (question) {
+      switch(question.answer) {
+        case 1: return question.answer_1;
+        case 2: return question.answer_2;
+        case 3: return question.answer_3;
+        case 4: return question.answer_4;
+        default: return 'Error';
+      }
+    } else {
+      return 'Error';
     }
   }
   public playAgain() {

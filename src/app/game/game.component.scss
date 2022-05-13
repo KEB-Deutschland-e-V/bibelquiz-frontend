@@ -7,7 +7,7 @@
 .half-button {
   font-size: xx-large;
   padding: 20px;
-  width:45%;
+  width:65%;
   margin:10px;
 }
 #status {
@@ -25,11 +25,13 @@
   margin-left: auto;
 }
 .material-icons {
-  font-size: 48px;
+  font-size: 2rem;
 }
 .mat-icon {
-  height: 48px;
-  width: 48px;
+  /*height: 48px;
+  width: 48px;*/
+  height:2rem;
+  width:2rem;
   transition: all 400ms ease-in-out;
 }
 
