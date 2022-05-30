@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
+import { AnswerState } from '../answer/answer.component';
 
 
 @Injectable({
@@ -56,7 +57,30 @@ export class BackendService {
       return q.difficulty === parseInt(difficulty.id) && !usedIDs.includes(q.id)
     })
     if (filtered.length > 0) {
-      return filtered[Math.floor(Math.random()*filtered.length)];
+      let question = filtered[Math.floor(Math.random() * filtered.length)];
+      question.answers = [
+        {
+          id: 1,
+          text: question.answer_1,
+          state: AnswerState.Select
+        },
+        {
+          id: 2,
+          text: question.answer_2,
+          state: AnswerState.Select
+        },
+        {
+          id: 3,
+          text: question.answer_3,
+          state: AnswerState.Select
+        },
+        {
+          id: 4,
+          text: question.answer_4,
+          state: AnswerState.Select
+        }
+      ]
+      return question;
     } else {
       return null;
     }
@@ -96,6 +120,7 @@ export interface Question {
   answer_3: string;
   answer_4: string;
   answer: number;
+  answers: any;
   difficulty: number;
   difficulty_name: string | undefined;
 }

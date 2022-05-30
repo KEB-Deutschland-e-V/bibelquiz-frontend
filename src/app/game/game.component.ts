@@ -42,12 +42,6 @@ export class GameComponent implements OnInit {
   question: Question | null;
   usedQuestions: string[] = []; //ids of questions that have been used in this round
   questionsForDifficulty = 0;
-  answerState = {
-    answer_1: AnswerState.Select,
-    answer_2: AnswerState.Select,
-    answer_3: AnswerState.Select,
-    answer_4: AnswerState.Select
-  }
   showResult = false;
   result = {
     state: 'right',
@@ -165,14 +159,15 @@ export class GameComponent implements OnInit {
       }, this.pointLossTime);
     }
   }
-  public chooseAnswer(answer:number) {
+  public chooseAnswer(answer:string) {
+
     if (this.showResult) {
       return;
     }
     clearInterval(this.pointsInterval);
     this.showResult = true;
     this.questionNumber++
-    if (this.question && this.question.answer === answer) {
+    if (this.question && this.question.answer === parseInt(answer)) {
       this.points += this.pointsForQuestion;
       this.result.state = 'right';
       this.result.text = 'Richtig!'
@@ -189,34 +184,15 @@ export class GameComponent implements OnInit {
       this.tts.say(this.result.text + ' Richtig wäre gewesen: ' + this.getAnswer(this.question || undefined));
       this.lives--;
     }
-    this.backend.postStats(this.question!, answer, this.result.state === 'right').subscribe();
-
-    switch(this.question!.answer) {
-      case 1:
-        this.answerState.answer_1 = AnswerState.Right;
-        this.answerState.answer_2 = AnswerState.Wrong;
-        this.answerState.answer_3 = AnswerState.Wrong;
-        this.answerState.answer_4 = AnswerState.Wrong;
-        break;
-      case 2:
-        this.answerState.answer_1 = AnswerState.Wrong;
-        this.answerState.answer_2 = AnswerState.Right;
-        this.answerState.answer_3 = AnswerState.Wrong;
-        this.answerState.answer_4 = AnswerState.Wrong;
-        break;
-      case 3:
-        this.answerState.answer_1 = AnswerState.Wrong;
-        this.answerState.answer_2 = AnswerState.Wrong;
-        this.answerState.answer_3 = AnswerState.Right;
-        this.answerState.answer_4 = AnswerState.Wrong;
-        break;
-      case 4:
-        this.answerState.answer_1 = AnswerState.Wrong;
-        this.answerState.answer_2 = AnswerState.Wrong;
-        this.answerState.answer_3 = AnswerState.Wrong;
-        this.answerState.answer_4 = AnswerState.Right;
-        break;
+    this.backend.postStats(this.question!, parseInt(answer), this.result.state === 'right').subscribe();
+    for (const answer of this.question!.answers) {
+      if (answer.id = this.question!.answer) {
+        answer.state =  AnswerState.Right;
+      } else {
+        answer.state = AnswerState.Wrong;
+      }
     }
+    
   }
   public gameOver() {
     this.showResult = false;
@@ -228,11 +204,10 @@ export class GameComponent implements OnInit {
       this.myConfetti.reset();
       this.renderer2.removeChild(this.elementRef.nativeElement, this.canvas)
     }
-    this.answerState.answer_1 = AnswerState.Select;
-    this.answerState.answer_2 = AnswerState.Select;
-    this.answerState.answer_3 = AnswerState.Select;
-    this.answerState.answer_4 = AnswerState.Select;
     this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
+    for (const answer of this.question?.answers) {
+      answer.state = AnswerState.Select;
+    }
     if (this.question) {
       this.usedQuestions.push(this.question.id);
       this.pointsForQuestion = this.difficulty.points;
