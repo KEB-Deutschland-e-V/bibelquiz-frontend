@@ -38,9 +38,10 @@ export class GameComponent implements OnInit {
   countdown;
   countdownInterval: any;
   lives;
-  questionNumber = 0;
+  questionNumber = 1;
   question: Question | null;
   usedQuestions: string[] = []; //ids of questions that have been used in this round
+  questionsForDifficulty = 0;
   answerState = {
     answer_1: AnswerState.Select,
     answer_2: AnswerState.Select,
@@ -74,6 +75,7 @@ export class GameComponent implements OnInit {
     this.countdown = this.config.countdown;
     this.lives = this.config.lives;
     this.question = this.backend.getRandomQuestion(this.difficulty);
+    this.questionsForDifficulty = this.backend.getNumOfQuestions(this.difficulty);
     this.pointsForQuestion = this.difficulty.points;
     if (this.question) {
       this.usedQuestions.push(this.question.id);
@@ -128,6 +130,7 @@ export class GameComponent implements OnInit {
       this.bgm.bgm();
       this.state = GameState.Game;
       this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
+      this.questionsForDifficulty = this.backend.getNumOfQuestions(this.difficulty);
       if (this.question) {
         this.usedQuestions.push(this.question.id);
         this.pointsForQuestion = this.difficulty.points;
@@ -168,8 +171,8 @@ export class GameComponent implements OnInit {
     }
     clearInterval(this.pointsInterval);
     this.showResult = true;
+    this.questionNumber++
     if (this.question && this.question.answer === answer) {
-      this.questionNumber++
       this.points += this.pointsForQuestion;
       this.result.state = 'right';
       this.result.text = 'Richtig!'
@@ -332,7 +335,7 @@ export class GameComponent implements OnInit {
     this.usedQuestions = [];
     this.lives = 3;
     this.points = 0;
-    this.questionNumber = 0;
+    this.questionNumber = 1;
     this.nextQuestion();
   }
 }

@@ -16,7 +16,7 @@
   <table id="status">
     <tr>
       <td id="score" style="text-align: left;">Punkte: {{points}}</td>
-      <td id="difficulty" style="text-align: center;" *ngIf="question">{{question.difficulty_name}}</td>
+      <td id="difficulty" style="text-align: center;" *ngIf="question">{{question.difficulty_name}} (Frage {{questionNumber}} von {{questionsForDifficulty}})</td>
       <td id="lives"  style="text-align: right;">
         <span *ngFor="let l of [].constructor(lives)">
           <mat-icon matRipple >favorite</mat-icon>

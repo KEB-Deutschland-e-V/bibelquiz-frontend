@@ -62,6 +62,12 @@ export class BackendService {
     }
   }
 
+  public getNumOfQuestions(difficulty: Difficulty) {
+    return this.questions.filter((q) => {
+      return q.difficulty === parseInt(difficulty.id)
+    }).length;
+  }
+
   public getDifficulties(): Difficulty[] {
     return this.difficulties;
   }
