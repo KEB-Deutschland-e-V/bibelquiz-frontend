@@ -40,7 +40,7 @@
     <br/>
     <button *ngIf="showNextDifficulty === true" mat-raised-button color="primary" (click)="nextDifficulty()" style="z-index: 130;">Höhere Schwierigkeit</button>
     <button *ngIf="lives > 0 && showNextDifficulty !== true && noMoreQuestions !== true" mat-raised-button color="primary" (click)="nextQuestion()" style="z-index: 130;">Nächste Frage</button>
-    <button *ngIf="lives === 0 || noMoreQuestions === true" mat-raised-button color="primary" (click)="gameOver()" style="z-index: 130;">Spiel Vorbei</button>
+    <button *ngIf="lives === 0 || noMoreQuestions === true || showNextDifficulty === true" mat-raised-button color="primary" (click)="gameOver()" style="z-index: 130;">Spiel Vorbei</button>
   </div>
   <app-answer *ngIf="question && !showResult" [answer]="question.answer_1" [state]="answerState.answer_1" (click)="chooseAnswer(1)"></app-answer>
   <app-answer *ngIf="question && !showResult" [answer]="question.answer_2" [state]="answerState.answer_2" (click)="chooseAnswer(2)"></app-answer>
