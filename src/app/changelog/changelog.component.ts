@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangelogComponent implements OnInit {
   changes = [
+    "1.0.18;Seite 'Über diese App' ausgelagert",
     "1.0.17;Seite 'Changelog' (diese) hinzugefügt",
     "1.0.16;Reihenfolge der Antworten ist jetzt zufällig",
     "1.0.15;Beim Wechsel zu einem höheren Schwierigkeitsgrad kann das Spiel nun auch beendet werden",

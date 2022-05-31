@@ -32,6 +32,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ChangelogComponent } from './changelog/changelog.component';
+import { AboutComponent } from './about/about.component';
 
 
 
@@ -49,7 +50,8 @@ export function preloadQuestions(backendService: BackendService): Function {
     HighscoresComponent,
     GameComponent,
     AnswerComponent,
-    ChangelogComponent
+    ChangelogComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
