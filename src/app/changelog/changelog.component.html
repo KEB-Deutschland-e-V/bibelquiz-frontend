@@ -1,0 +1,15 @@
+<h1>Changelog</h1>
+<dl>
+  <div *ngFor="let entry of changelog">
+    <dt><strong>{{entry.version}}</strong></dt>
+    <dd>
+      <ul>
+        <li *ngFor="let change of entry.changes">
+          {{change}}
+        </li>
+      </ul>
+    </dd>
+    <hr/>
+  </div>
+</dl>
+

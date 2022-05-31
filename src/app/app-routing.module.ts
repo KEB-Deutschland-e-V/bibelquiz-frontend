@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChangelogComponent } from './changelog/changelog.component';
 import { DataComponent } from './data/data.component';
 import { GameComponent } from './game/game.component';
 import { HighscoresComponent } from './highscores/highscores.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'impressum', component: LegalComponent },
   { path: 'data', component: DataComponent },
   { path: 'datenschutz', component: DataComponent },
+  { path: 'changelog', component: ChangelogComponent }
 ];
 
 @NgModule({

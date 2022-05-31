@@ -31,6 +31,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { ChangelogComponent } from './changelog/changelog.component';
 
 
 
@@ -47,7 +48,8 @@ export function preloadQuestions(backendService: BackendService): Function {
     DataComponent,
     HighscoresComponent,
     GameComponent,
-    AnswerComponent
+    AnswerComponent,
+    ChangelogComponent
   ],
   imports: [
     BrowserModule,

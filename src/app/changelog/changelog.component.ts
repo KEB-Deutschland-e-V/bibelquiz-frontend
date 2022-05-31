@@ -1,0 +1,43 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-changelog',
+  templateUrl: './changelog.component.html',
+  styleUrls: ['./changelog.component.scss']
+})
+export class ChangelogComponent implements OnInit {
+  changes = [
+    "1.0.17;Seite 'Changelog' (diese) hinzugefügt",
+    "1.0.16;Reihenfolge der Antworten ist jetzt zufällig",
+    "1.0.15;Beim Wechsel zu einem höheren Schwierigkeitsgrad kann das Spiel nun auch beendet werden",
+    "1.0.14;Footer ist nun immer unten",
+    "1.0.13;Nummer der akutellen Frage und Gesamtzahl der Fragen werden nun angezeigt",
+    "1.0.12;Korrektur von Rechtschreibfehlern",
+    "1.0.11;Bessere Darstellung auf Mobilgeräten",
+    "1.0.10;Eingabe des Namens: Feld ist nun besser sichtbar",
+    "1.0.9;Korrektur der Datenschutzhinweise",
+    "1.0.8;Korrektur der Datenschutzhinweise",
+    "1.0.7;Schrift-Dateien sind nun lokal verfügbar",
+    "1.0.6;JSON-Dateien korrigiert",
+    "1.0.5;Korrektur der Versions-Anzeige",
+    "1.0.4;Versionsanzeige eingebaut",
+    "1.0.3;Korrektur des Wechsels zu einem höheren Schwierigkeitsgrad",
+    "1.0.2;Korrektur der Buttons 'Nochmal Spielen'",
+    "1.0.1;Bibelverse werden nun bei jeder Antwort angezeigt",
+    "1.0.0;Erster Release",
+  ]
+  
+  changelog:any[] = []
+  constructor() {
+    for (const change of this.changes) {
+      let c = change.split(";");
+      this.changelog.push({
+        version: c[0],
+        changes: c.slice(1)
+      })
+    }
+  }
+  ngOnInit(): void {
+  }
+
+}
