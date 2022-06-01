@@ -123,6 +123,7 @@ export class GameComponent implements OnInit {
       this.sounds.start();
       this.bgm.bgm();
       this.state = GameState.Game;
+      this.noMoreQuestions = false;
       this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
       this.questionsForDifficulty = this.backend.getNumOfQuestions(this.difficulty);
       if (this.question) {
@@ -166,7 +167,6 @@ export class GameComponent implements OnInit {
     }
     clearInterval(this.pointsInterval);
     this.showResult = true;
-    this.questionNumber++
     if (this.question && this.question.answer === parseInt(answer)) {
       this.points += this.pointsForQuestion;
       this.result.state = 'right';
@@ -200,6 +200,7 @@ export class GameComponent implements OnInit {
   }
   public nextQuestion() {
     this.showResult = false;
+    this.questionNumber++;
     if (this.canvas) {
       this.myConfetti.reset();
       this.renderer2.removeChild(this.elementRef.nativeElement, this.canvas)

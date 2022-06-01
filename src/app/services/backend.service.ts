@@ -109,7 +109,6 @@ export class BackendService {
       responseType: 'text'
     });
   }
-  
 }
 export interface Question {
   id: string;

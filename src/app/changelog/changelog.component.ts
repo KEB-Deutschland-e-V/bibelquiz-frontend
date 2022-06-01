@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangelogComponent implements OnInit {
   changes = [
+    "1.0.20;Bild zu Willkommensseite hinzugefügt",
+    "1.0.19;Korrektur kleiner Fehler wie der Anzeige der Fragenummer",
     "1.0.18;Seite 'Über diese App' ausgelagert",
     "1.0.17;Seite 'Changelog' (diese) hinzugefügt",
     "1.0.16;Reihenfolge der Antworten ist jetzt zufällig",
