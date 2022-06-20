@@ -206,10 +206,11 @@ export class GameComponent implements OnInit {
       this.renderer2.removeChild(this.elementRef.nativeElement, this.canvas)
     }
     this.question = this.backend.getRandomQuestion(this.difficulty, this.usedQuestions)
-    for (const answer of this.question?.answers) {
-      answer.state = AnswerState.Select;
-    }
     if (this.question) {
+      for (const answer of this.question.answers) {
+        answer.state = AnswerState.Select;
+      }
+      this.question.answers = this.shuffleArray(this.question.answers);
       this.usedQuestions.push(this.question.id);
       this.pointsForQuestion = this.difficulty.points;
       this.readQuestion(this.question)
@@ -238,6 +239,8 @@ export class GameComponent implements OnInit {
         this.difficulty = this.difficulties[2];
         break;
     }
+    this.questionsForDifficulty = this.backend.getNumOfQuestions(this.difficulty);
+    this.questionNumber = 1;
     this.nextQuestion();
   }
   public surprise(): void {
@@ -282,7 +285,6 @@ export class GameComponent implements OnInit {
     this.state = GameState.Again; 
   }
 
- 
   private readQuestion(question: Question) {
     this.tts.stop()
     this.tts.say(
@@ -314,6 +316,13 @@ export class GameComponent implements OnInit {
     this.questionNumber = 1;
     this.nextQuestion();
   }
+  private shuffleArray(array: any[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 }
 enum GameState {
   Start = 'Start',

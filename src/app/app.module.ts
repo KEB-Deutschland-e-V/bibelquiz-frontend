@@ -33,6 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ChangelogComponent } from './changelog/changelog.component';
 import { AboutComponent } from './about/about.component';
+import { PluralPipe } from './plural.pipe';
 
 
 
@@ -51,7 +52,8 @@ export function preloadQuestions(backendService: BackendService): Function {
     GameComponent,
     AnswerComponent,
     ChangelogComponent,
-    AboutComponent
+    AboutComponent,
+    PluralPipe
   ],
   imports: [
     BrowserModule,

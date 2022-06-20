@@ -25,7 +25,7 @@
     </tr>
   </table>
   <p *ngIf="question">{{question.question}}</p>
-  <p *ngIf="question">{{pointsForQuestion}}</p>
+  <p *ngIf="question && !showResult">{{pointsForQuestion}}</p>
   <div *ngIf="showResult || showNextDifficulty || noMoreQuestions" id="result" [ngClass]="{'wrong': result.state=='wrong', 'right': result.state=='right'}">
     {{result.text}}
     <br/>
@@ -33,7 +33,7 @@
     <br/>
     <span *ngIf="(result.state=='wrong' || result.state=='right')  && question">{{question.bible}}</span>
     <br/>
-    <span *ngIf="result.state=='right'">{{pointsForQuestion}} Punkte!</span>
+    <span *ngIf="result.state=='right'">{{pointsForQuestion}} Punkt{{ pointsForQuestion | plural}}!</span>
     <br/>
     <span *ngIf="showNextDifficulty === true">Keine Fragen mehr im aktuellen Schwierigkeitsgrad!</span>
     <span *ngIf="noMoreQuestions === true">Keine Fragen mehr! Glückwunsch!</span>
@@ -45,12 +45,6 @@
   <div *ngIf="question && !showResult">
     <app-answer *ngFor="let answer of question.answers;"  [answer]="answer.text" [state]="answer.state" (click)="chooseAnswer(answer.id)"></app-answer>
   </div>
-  <!--
-  <app-answer *ngIf="question && !showResult" [answer]="question.answer_1" [state]="answerState.answer_1" (click)="chooseAnswer(1)"></app-answer>
-  <app-answer *ngIf="question && !showResult" [answer]="question.answer_2" [state]="answerState.answer_2" (click)="chooseAnswer(2)"></app-answer>
-  <app-answer *ngIf="question && !showResult" [answer]="question.answer_3" [state]="answerState.answer_3" (click)="chooseAnswer(3)"></app-answer>
-  <app-answer *ngIf="question && !showResult" [answer]="question.answer_4" [state]="answerState.answer_4" (click)="chooseAnswer(4)"></app-answer>
-  -->
 </div>
 
 <div *ngIf="state === 'Highscore'">
