@@ -46,5 +46,6 @@ Thumbs.db
 
 deploy.sh
 build.sh
+build-apps.sh
 
 .angular/

@@ -13,13 +13,7 @@ echo "Build Android"
 echo "Build iOS"
 (cd native && cordova build ios --release)
 
-echo "Build Windows"
-(cd native && cordova build windows --release)
-
 echo "Build Electron"
 (cd native && cordova build electron --release)
-
-echo "Build MacOS"
-(cd native && cordova build osx --release)
 
 echo "Done"
