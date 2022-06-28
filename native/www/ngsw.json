@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1656403808226,
+  "timestamp": 1656407529903,
   "index": "./index.html",
   "assetGroups": [
     {
@@ -12,7 +12,7 @@
       },
       "urls": [
         "./index.html",
-        "./main.c939586ccd9c9ff8.js",
+        "./main.5ec2e83c6ccc239c.js",
         "./manifest.webmanifest",
         "./polyfills.8e591707cfaa9d0d.js",
         "./runtime.aaedba49815d2ab0.js",
@@ -175,8 +175,8 @@
     "./assets/sounds/correct.mp3": "e4e2a7a74f00c3cfaee8acca26c5b6cacbced0e4",
     "./assets/sounds/start.mp3": "e26d7f89f692361c1bdebe9aa3f843d5f4cc3060",
     "./assets/sounds/wrong.mp3": "9407c6e8266a847ed466bd68bd1f165fdfa8e8ea",
-    "./index.html": "e67ddfb519113503dd661811eee9af7b1381505b",
-    "./main.c939586ccd9c9ff8.js": "32f3281c90cdb83aba67955ef54aa44ee5c47e03",
+    "./index.html": "a6c183c88fe449295a06a6d0186e47c4e608eed6",
+    "./main.5ec2e83c6ccc239c.js": "d63b5c73042468901ed9b58c890f8fc6418fb140",
     "./manifest.webmanifest": "63b272452f7323ec09705c84044faa394ce82a79",
     "./polyfills.8e591707cfaa9d0d.js": "02673aa40c06319f0fb9058746059414c85f9363",
     "./roboto-v29-latin-300.0dfc8c1e31826e6b.woff2": "34f751a1b1a0c1c0b5264b99f490e689db939657",
