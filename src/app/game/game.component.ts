@@ -196,6 +196,9 @@ export class GameComponent implements OnInit {
   }
   public gameOver() {
     this.showResult = false;
+    if(this.pointsInterval) {
+      clearInterval(this.pointsInterval);
+    }
     this.state = GameState.Highscore;
   }
   public nextQuestion() {
@@ -241,6 +244,9 @@ export class GameComponent implements OnInit {
     }
     this.questionsForDifficulty = this.backend.getNumOfQuestions(this.difficulty);
     this.questionNumber = 1;
+    if(this.pointsInterval) {
+      clearInterval(this.pointsInterval);
+    }
     this.nextQuestion();
   }
   public surprise(): void {
