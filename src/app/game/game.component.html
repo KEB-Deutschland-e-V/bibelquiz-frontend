@@ -29,7 +29,7 @@
   <div *ngIf="showResult || showNextDifficulty || noMoreQuestions" id="result" [ngClass]="{'wrong': result.state=='wrong', 'right': result.state=='right'}">
     {{result.text}}
     <br/>
-    <span *ngIf="result.state=='wrong' && question">{{result.correct}}</span>
+    <span *ngIf="(result.state=='wrong' || result.state=='right')  && question">{{result.correct}}</span>
     <br/>
     <span *ngIf="(result.state=='wrong' || result.state=='right')  && question">{{question.bible}}</span>
     <br/>

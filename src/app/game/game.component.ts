@@ -170,10 +170,11 @@ export class GameComponent implements OnInit {
     if (this.question && this.question.answer === parseInt(answer)) {
       this.points += this.pointsForQuestion;
       this.result.state = 'right';
-      this.result.text = 'Richtig!'
+      this.result.text = 'Richtig!' 
+      this.result.correct = this.getAnswer(this.question || undefined)
       this.sounds.correct();
       this.tts.stop();
-      this.tts.say(this.result.text);
+      this.tts.say(this.result.text + ' ' + this.result.correct);
       this.surprise();
     } else {
       this.result.state = 'wrong';

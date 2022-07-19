@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangelogComponent implements OnInit {
   changes = [
+    "1.0.24;Richtige Antwort wird nun immer angezeigt",
     "1.0.23;Punktezähler beim Neustart wiederherstellen",
     "1.0.20;Korrekter Plural für Punkte wird angezeigt;Punkte zählen nach der Antwort nicht mehr weiter;Fehlerbildschirm bei 'keine Fragen mehr' korrigiert.;Anzahl Fragen bei Schwierigkeitswechsel korrigiert.;Antworten werden nun gemischt.",
     "1.0.19;Korrektur kleiner Fehler wie der Anzeige der Fragenummer",
