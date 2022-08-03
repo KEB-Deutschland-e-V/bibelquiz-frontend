@@ -20,8 +20,10 @@ export class TtsService {
     }
   }
   public stop() {
-    if (speechSynthesis.speaking) {
-      speechSynthesis.cancel();
+    if (environment.flags.tts && this.settings.getTTS()) {
+      if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+      }
     }
   }
 }

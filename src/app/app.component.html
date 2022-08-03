@@ -16,7 +16,7 @@
         <a mat-list-item [routerLink]="'/about'" (click)="sidenav.toggle()"> Über die App </a>
         <a mat-list-item [routerLink]="'/highscores'" (click)="sidenav.toggle()"> Highscores </a>
         <hr/>
-        <mat-list-item>
+        <mat-list-item *ngIf="ttsEnabled">
           <mat-slide-toggle [checked]="settings.tts" color="primary" (change)="toggle('tts')">Sprache</mat-slide-toggle>
         </mat-list-item>
         <mat-list-item>

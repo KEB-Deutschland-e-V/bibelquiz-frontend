@@ -4,6 +4,7 @@ import packageInfo from '../../package.json';
 import { SettingsService } from './services/settings.service';
 
 import { BgmService } from './services/bgm.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,12 @@ import { BgmService } from './services/bgm.service';
 })
 export class AppComponent {
   public version: string = packageInfo.version;
+  public ttsEnabled: boolean = environment.flags.tts;
+
   public settings: any = {
     sound: true,
     animations: true,
-    tts: true,
+    tts: false,
     music: true
   };
   constructor(
@@ -24,7 +27,9 @@ export class AppComponent {
   ){
     this.settings.sound = this.settingsService.getSound();
     this.settings.animations = this.settingsService.getAnimations();
-    this.settings.tts = this.settingsService.getTTS();
+    if (this.ttsEnabled) {
+      this.settings.tts = this.settingsService.getTTS();
+    }
     this.settings.music = this.settingsService.getMusic();
   }
   public toggle (key: string) {
