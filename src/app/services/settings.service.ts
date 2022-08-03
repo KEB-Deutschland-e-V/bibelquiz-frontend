@@ -6,13 +6,13 @@ import { Injectable } from '@angular/core';
 export class SettingsService {
   private sound:boolean = true;
   private animations:boolean = true;
-  private tts:boolean = true;
+  private tts:boolean = false;
   private music:boolean = true;
   constructor(
   ) { 
     this.sound = JSON.parse(localStorage.getItem('sound') || 'true');
     this.animations = JSON.parse(localStorage.getItem('animations') || 'true');
-    this.tts = JSON.parse(localStorage.getItem('tts') || 'true');
+    this.tts = JSON.parse(localStorage.getItem('tts') || 'false');
     this.music = JSON.parse(localStorage.getItem('music') || 'true');
   }
 
