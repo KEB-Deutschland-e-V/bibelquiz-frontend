@@ -11,7 +11,9 @@ export class TtsService {
   constructor(
     private settings: SettingsService
   ) {
-    this.ut = new SpeechSynthesisUtterance()
+    if (environment.flags.tts && this.settings.getTTS()) {
+      this.ut = new SpeechSynthesisUtterance()
+    }
   }
   public say(message: string) {
     if (environment.flags.tts && this.settings.getTTS()) {
