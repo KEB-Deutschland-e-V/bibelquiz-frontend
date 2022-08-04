@@ -23,7 +23,7 @@ RUN npm install -g @angular/cli@13.3.1
 COPY . /app
 
 # generate build
-RUN ng build --configuration=production --output-path=dist
+RUN ng build --configuration=production --output-path=dist --aot --output-hashing=all
 
 # Create Version files
 RUN echo "$(jq -r '.version' package.json)" > version.txt

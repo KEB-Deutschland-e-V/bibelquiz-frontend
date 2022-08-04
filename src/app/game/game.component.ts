@@ -316,6 +316,9 @@ export class GameComponent implements OnInit {
     }
   }
   public playAgain() {
+    if(this.pointsInterval) {
+      clearInterval(this.pointsInterval);
+    }
     this.state = GameState.Start;
     this.usedQuestions = [];
     this.lives = 3;
