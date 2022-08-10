@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangelogComponent implements OnInit {
   changes = [
+    "1.0.28;Version als Button deaktiviert",
     "1.0.27;Punktezähler wurde aktualisiert",
     "1.0.26;Sprachausgabe nun Standardmäßig deaktiviert",
     "1.0.24;Richtige Antwort wird nun immer angezeigt",
