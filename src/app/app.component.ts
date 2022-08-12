@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 export class AppComponent {
   public version: string = packageInfo.version;
   public ttsEnabled: boolean = environment.flags.tts;
+  public userAgent: string = navigator.userAgent;
 
   public settings: any = {
     sound: true,

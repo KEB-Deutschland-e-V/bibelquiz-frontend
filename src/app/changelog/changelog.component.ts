@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangelogComponent implements OnInit {
   changes = [
+    "1.0.30;Externe Links werden bei iOS and Android Apps nicht mehr angezeigt",
     "1.0.29;Kontakt-Seite als Link hinzugefügt",
     "1.0.28;Version als Button deaktiviert",
     "1.0.27;Punktezähler wurde aktualisiert",
