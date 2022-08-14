@@ -10,7 +10,7 @@ export class BgmService {
   constructor(private settings: SettingsService) { 
     this.audio = new Audio();
     this.audio.loop = true;
-    this.audio.volume = 0.2;
+    this.audio.volume = 0.1;
 
   }
   private play(src: string){
@@ -36,7 +36,7 @@ export class BgmService {
     if (this.audio && !this.audio.paused) {
       this.audio.pause();
     }
-    this.audio.volume = 0.2;
+    this.audio.volume = 0.1;
     this.play('assets/sounds/bibel_gottes_wort_ohne_vocals.mp3')
   }
 }
