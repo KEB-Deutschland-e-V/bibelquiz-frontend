@@ -16,7 +16,10 @@
   Deine persönlichen Daten dürfen bei uns nur gespeichert werden, wenn Du uns das erlaubst. Die IP-Adresse müssen wir aber immer - auch ohne Deiner Erlaubnis - für eine begrenzte Zeit (60 Tage) speichern, damit wir prüfen können, wer unsere Seiten besucht. Manchmal gibt es Besucher, die uns Schaden zufügen wollen, mit der IP-Adresse können wir das dann der Polizei melden. Wenn Du Fragen zu Deinen gespeicherten Daten bei uns hast, dann schreibe uns doch eine E-Mail. Auskunft über Deine Daten können wir natürlich nur geben, wenn Du nachweist, dass Du die Informationen auch haben darfst - sonst könnte ja jeder kommen und Deine Daten abfragen. Du kannst die Daten bei uns dann ändern oder auch löschen lassen. Ebenso hast Du das Recht zu sagen, dass wir die Daten nicht mehr nutzen dürfen – wir müssen sie dann löschen.
 </p>
 <p>
-  Wie Du hoffentlich siehst, sind uns Deine Daten sehr wichtig. <a href="https://www.keb-de.org/index.php?id=24" target="_blank">Schreibe uns bitte auch, wenn Du Fragen hast.</a>
+  Wie Du hoffentlich siehst, sind uns Deine Daten sehr wichtig. 
+  <a *ngIf="userAgent !== 'bibelquiz-ios-app' && userAgent !== 'bibelquiz-android-app'" href="https://www.keb-de.org/index.php?id=24" target="_blank">Schreibe uns bitte auch, wenn Du Fragen hast.</a>
+  <span *ngIf="userAgent === 'bibelquiz-ios-app' || userAgent === 'bibelquiz-android-app'">Schreibe uns bitte auch, wenn Du Fragen hast.</span>
+
 </p>
 <hr/>
 <h1>Datenschutzerklärung (Langform)</h1>

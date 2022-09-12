@@ -4,7 +4,10 @@
 <h4>KEB-Deutschland e. V.</h4>
 <p>Am Eichelsberg 3<br /> 35236 Breidenbach</p>
 <p>06465 9283-0<br /> 06465 9283-20 (Fax)</p>
-<p><a href="mailto:info@keb-de.org">info@keb-de.org</a></p>
+<p>
+  <a *ngIf="userAgent !== 'bibelquiz-ios-app' && userAgent !== 'bibelquiz-android-app'" href="mailto:info@keb-de.org">info@keb-de.org</a>
+  <span *ngIf="userAgent === 'bibelquiz-ios-app' || userAgent === 'bibelquiz-android-app'">info@keb-de.org</span>
+</p>
 
 <h2>Missionsleitung:</h2>
 <p>Gerd-Walter Buskies<br /> Thomas Helsper<br /> Oliver Klein<br /> &nbsp;</p>
@@ -17,7 +20,11 @@
 <p><strong>Inhaltlich Verantwortlicher gemäß § 55 Abs. 2 RStV:</strong></p>
 <p>Gerd-Walter Buskies<br /> &nbsp;</p>
 <p><strong>Technisch Verantwortlich:</strong></p>
-<p><a href="https://webdad.eu">WebDaD.eu</a><br /> &nbsp;</p>
+<p>
+  <a *ngIf="userAgent !== 'bibelquiz-ios-app' && userAgent !== 'bibelquiz-android-app'" href="https://webdad.eu" target="_blank">WebDaD.eu</a>
+  <span *ngIf="userAgent === 'bibelquiz-ios-app' || userAgent === 'bibelquiz-android-app'">WebDaD.eu</span>
+  <br /> &nbsp;
+</p>
 
 <h2>Haftungshinweis:</h2>
 <p>Für die Inhalte externer Links übernehmen wir keine Verantwortung. Dafür sind ausschließlich deren Betreiber verantwortlich.</p>
