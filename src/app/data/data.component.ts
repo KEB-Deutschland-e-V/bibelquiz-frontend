@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataComponent implements OnInit {
 
+  public userAgent: string = navigator.userAgent;
+  
   constructor() { }
+
 
   ngOnInit(): void {
   }

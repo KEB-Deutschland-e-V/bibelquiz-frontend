@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LegalComponent implements OnInit {
 
+  public userAgent: string = navigator.userAgent;
+  
   constructor() { }
 
   ngOnInit(): void {
