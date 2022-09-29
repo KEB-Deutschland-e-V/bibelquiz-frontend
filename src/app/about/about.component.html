@@ -18,7 +18,11 @@
 <h2>Von wem ist das?</h2>
 
 <p>
-  Die <strong>"Die Bibel-Quiz-App"</strong> wird von <a href="https://www.keb-de.org/" target="_blank">KEB-Deutschland e.V. (Kinder entdecken die Bibel)</a> verantwortet und herausgegeben. 
+  Die <strong>"Die Bibel-Quiz-App"</strong> wird von 
+  <a *ngIf="userAgent !== 'bibelquiz-ios-app' && userAgent !== 'bibelquiz-android-app'" href="https://www.keb-de.org/" target="_blank">KEB-Deutschland e.V. (Kinder entdecken die Bibel)</a>
+  <span *ngIf="userAgent === 'bibelquiz-ios-app' || userAgent === 'bibelquiz-android-app'">KEB-Deutschland e.V. (Kinder entdecken die Bibel)</span>
+  verantwortet und herausgegeben. 
+  <br/>
   Leiter dieses Projekts ist Lars Göhl, Regionalbüroleiter in München.
 </p>
 <p>
