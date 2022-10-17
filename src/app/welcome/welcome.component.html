@@ -2,4 +2,8 @@
 <p>Wir wünschen Dir viel Freude beim Quizzen zu Fragen rund um die Bibel.</p>
 <button mat-raised-button color="primary" [routerLink]="['/spiel']" class="start-button">Los Gehts!</button>
 <br/>
-<img src="assets/images/junge_mit_bibel.png" alt="Junge mit Bibel und Fragezeichen">
+<a class="appstore-link" *ngIf="userAgent !== 'bibelquiz-ios-app' && userAgent !== 'bibelquiz-android-app'" href="https://apple.co/3yKCz4Q" target="_blank">
+  <img src="assets/images/link-badge-appstore.svg" alt="Laden im App Store">
+</a>
+<br/>
+<img id="boy" src="assets/images/junge_mit_bibel.png" alt="Junge mit Bibel und Fragezeichen">

@@ -10,7 +10,8 @@ import { BgmService } from '../services/bgm.service';
 })
 export class WelcomeComponent implements OnInit {
 
-
+  public userAgent: string = navigator.userAgent;
+  
   constructor( private bgm: BgmService) { 
   }
 
