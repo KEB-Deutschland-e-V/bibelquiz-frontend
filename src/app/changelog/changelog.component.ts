@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangelogComponent implements OnInit {
   changes = [
-    "1.0.35;Linkm zum Apple App Store hinzugefügt",
+    "1.0.36;App Store Image gefixt",
+    "1.0.35;Link zum Apple App Store hinzugefügt",
     "1.0.34;Mehr Links deaktiviert;Startbild kleiner gemacht",
     "1.0.33;Mehr externe Links in den Apps deaktiviert.",
     "1.0.30;Externe Links werden bei iOS and Android Apps nicht mehr angezeigt",
