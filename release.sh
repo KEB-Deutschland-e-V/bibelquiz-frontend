@@ -4,7 +4,7 @@
 echo "Release a new Version"
 git add .
 git commit -m "$1"
-npm version patch
+#npm version patch
 
 echo "Building new Artifact"
 bash build.sh
