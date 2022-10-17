@@ -2,7 +2,7 @@ name: ReleaseNotice
 on: push
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: alpine-latest
     steps:
       # To check the github context
       - name: Dump Github context
