@@ -1,5 +1,8 @@
 name: ReleaseNotice
-on: push
+on: 
+  push:
+    tags:        
+      - '*'
 jobs:
   build:
     runs-on: alpine-latest
@@ -22,7 +25,7 @@ jobs:
                 "type": "header",
                 "text": {
                   "type": "plain_text",
-                  "text": "${{ github.event.release.tag_name}} is published!"
+                  "text": "${{ github.event.push.tag_name}} is published!"
                 }
               },
               {
@@ -43,14 +46,14 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": ${{ toJSON(github.event.release.body) }}
+                  "text": ${{ toJSON(github.event.push.body) }}
                 }
               },
               {
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "${{ github.event.release.html_url }}"
+                  "text": "${{ github.event.push.html_url }}"
                 }
               }
             ]
