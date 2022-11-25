@@ -165,7 +165,9 @@ export class GameComponent implements OnInit {
     if (this.showResult) {
       return;
     }
-    clearInterval(this.pointsInterval);
+    if(this.pointsInterval) {
+      clearInterval(this.pointsInterval);
+    }
     this.showResult = true;
     if (this.question && this.question.answer === parseInt(answer)) {
       this.points += this.pointsForQuestion;
