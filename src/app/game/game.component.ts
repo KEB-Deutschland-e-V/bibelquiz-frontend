@@ -131,7 +131,7 @@ export class GameComponent implements OnInit {
         this.pointsForQuestion = this.difficulty.points;
         this.readQuestion(this.question)
       }
-      
+      clearInterval(this.pointsInterval);
       this.pointsInterval = setInterval(() => {
         if(this.pointsForQuestion > 1) {
           this.pointsForQuestion--;
@@ -165,9 +165,7 @@ export class GameComponent implements OnInit {
     if (this.showResult) {
       return;
     }
-    if(this.pointsInterval) {
-      clearInterval(this.pointsInterval);
-    }
+    clearInterval(this.pointsInterval);
     this.showResult = true;
     if (this.question && this.question.answer === parseInt(answer)) {
       this.points += this.pointsForQuestion;
@@ -199,9 +197,7 @@ export class GameComponent implements OnInit {
   }
   public gameOver() {
     this.showResult = false;
-    if(this.pointsInterval) {
-      clearInterval(this.pointsInterval);
-    }
+    clearInterval(this.pointsInterval);
     this.state = GameState.Highscore;
   }
   public nextQuestion() {
@@ -220,7 +216,8 @@ export class GameComponent implements OnInit {
       this.usedQuestions.push(this.question.id);
       this.pointsForQuestion = this.difficulty.points;
       this.readQuestion(this.question)
-      this.pointsInterval = setInterval(() => {
+      clearInterval(this.pointsInterval);
+      this.pointsInterval  = setInterval(() => {
         if(this.pointsForQuestion > 1) {
           this.pointsForQuestion--;
         }
@@ -247,9 +244,7 @@ export class GameComponent implements OnInit {
     }
     this.questionsForDifficulty = this.backend.getNumOfQuestions(this.difficulty);
     this.questionNumber = 1;
-    if(this.pointsInterval) {
-      clearInterval(this.pointsInterval);
-    }
+    clearInterval(this.pointsInterval);
     this.nextQuestion();
   }
   public surprise(): void {
@@ -291,6 +286,7 @@ export class GameComponent implements OnInit {
   }
   public doNotInputHighscore(): void {
     this.entry = false;
+
     this.state = GameState.Again; 
   }
 
@@ -318,9 +314,7 @@ export class GameComponent implements OnInit {
     }
   }
   public playAgain() {
-    if(this.pointsInterval) {
-      clearInterval(this.pointsInterval);
-    }
+    clearInterval(this.pointsInterval);
     this.state = GameState.Start;
     this.usedQuestions = [];
     this.lives = 3;

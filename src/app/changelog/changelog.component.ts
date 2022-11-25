@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangelogComponent implements OnInit {
   changes = [
+    "1.0.42;Punktezähler-Problem gelöst",
     "1.0.41;Anpassung der Logos",
     "1.0.40;Wechsel des Inhaltlich Verantworlichen auf Oliver Klein",
     "1.0.39;Anpassung der Webseiten-Beschreibung beim Teilen",
