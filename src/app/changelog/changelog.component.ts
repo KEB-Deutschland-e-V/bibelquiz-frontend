@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangelogComponent implements OnInit {
   changes = [
+    "1.0.44;Es werden nun alle Highscores angezeigt, nicht nur die Top Ten.",
     "1.0.43;Anpassung Wording",
     "1.0.42;Punktezähler-Problem gelöst",
     "1.0.41;Anpassung der Logos",

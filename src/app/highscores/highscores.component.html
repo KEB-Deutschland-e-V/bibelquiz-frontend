@@ -1,4 +1,5 @@
 <h1>HighScores</h1>
+<button mat-raised-button color="primary" [routerLink]="['/spiel']" class="start-button">Spielen!</button>
 <mat-list>
   <mat-list-item *ngFor="let score of highscores; index as i">
     <strong>{{i+1}}</strong>

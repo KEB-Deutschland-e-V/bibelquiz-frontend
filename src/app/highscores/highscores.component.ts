@@ -22,9 +22,7 @@ export class HighscoresComponent implements OnInit {
     this.highscoreService.getHighscores().subscribe((data: any) => {
       this.highscores = data;
       this.highscores.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0))
-      this.highscores = this.highscores.slice(0,10);
       console.log(this.highscores)
-
     });
   }
 
