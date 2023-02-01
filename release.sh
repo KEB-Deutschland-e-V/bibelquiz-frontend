@@ -1,26 +1,68 @@
 #!/bin/bash
 # Release a new Version
 
-branch=$(git symbolic-ref --short HEAD)
-file="/opt/docker/frontend.sh"
-url="https://dasbibelquiz.de/version.txt"
-tag="latest"
-port=8080
-env="production"
+# user input
+if [ -z "$1" ]
+  then
+    echo "No patch level supplied (p, m, M, 0)"
+    exit 1
+fi
+if [ -z "$2" ]
+  then
+    echo "No commit message supplied"
+    exit 2
+fi
+LEVEL=$1
+MESSAGE=$2
+
+# variables
+VERSION=$(jq -r '.version' package.json)
+BRANCH=$(git symbolic-ref --short HEAD)
+FILE="/opt/docker/frontend.sh"
+URL="https://dasbibelquiz.de/version.txt"
+TAG="latest"
+PORT=8080
+ENV="production"
+
+# incremtent version on patch level without npm version patch
+IFS=. read -r MAJOR MINOR PATCH <<< "$VERSION"
+if [ "$LEVEL" == "p" ]; then
+  PATCH=$((PATCH + 1))
+elif [ "$LEVEL" == "m" ]; then
+  MINOR=$((MINOR + 1))
+  PATCH=0
+elif [ "$LEVEL" == "M" ]; then
+  MAJOR=$((MAJOR + 1))
+  MINOR=0
+  PATCH=0
+elif [ "$LEVEL" == "0" ]; then
+  echo "No version increment"
+else
+  echo "No valid patch level supplied (p, m, M)"
+  exit 3
+fi
+VERSION="$MAJOR.$MINOR.$PATCH"
+echo "Version: $VERSION"
+
+# insert version into package.json
+jq --arg VERSION "$VERSION" '.version = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+
+# add commit message with date into package.json
+jq --arg MESSAGE "$MESSAGE" --arg VERSION "$VERSION" '.changelog += ["$VERSION;$MESSAGE"]' package.json > package.json.tmp && mv package.json.tmp package.json
 
 # Check if the branch is "main" or "develop"
-if [ "$branch" == "main" ]; then
+if [ "$BRANCH" == "main" ]; then
   # Perform actions for the "main" branch
   echo "On the main branch, LIVE UPDATE!"
-elif [ "$branch" == "develop" ]; then
+elif [ "$BRANCH" == "develop" ]; then
   # Perform actions for the "develop" branch
   echo "On the develop branch, beta Update"
-  file="/opt/docker/beta-frontend.sh"
-  url="https://beta.dasbibelquiz.de/version.txt"
-  tag="beta"
-  port=16080
+  FILE="/opt/docker/beta-frontend.sh"
+  URL="https://beta.dasbibelquiz.de/version.txt"
+  TAG="beta"
+  PORT=16080
   VERSION="$VERSION-beta"
-  env="beta"
+  ENV="beta"
 else
   # Ignore all other branches
   echo "Not on main or develop branch"
@@ -29,31 +71,34 @@ fi
 
 echo "Release a new Version"
 git add .
-git commit -m "$1"
-#npm version patch
-VERSION=$(jq -r '.version' package.json)
-echo "Version: $VERSION"
+git commit -m "$1" 
 
-# TODO: Add $1 to package and CHANGELOG with date and version
 
-echo "Building new Artifact"
-podman build -t bibelquiz-frontend:$tag --build-arg=port=$port --build-arg=env=$env .
-podman tag bibelquiz-frontend:$tag dsigmund/bibelquiz-frontend:$tag
-podman tag bibelquiz-frontend:$tag dsigmund/bibelquiz-frontend:$VERSION
+echo "Building new Artifact:bibelquiz-frontend:$TAG "
+podman build -t bibelquiz-frontend:$TAG --build-arg=port=$PORT --build-arg=env=$ENV .
+podman tag bibelquiz-frontend:$TAG dsigmund/bibelquiz-frontend:$TAG
+podman tag bibelquiz-frontend:$TAG dsigmund/bibelquiz-frontend:$VERSION
 podman push dsigmund/bibelquiz-frontend:$VERSION
-podman push dsigmund/bibelquiz-frontend:$tag
+podman push dsigmund/bibelquiz-frontend:$TAG
 echo "Done"
 
 echo "Updating on Server"
-OLD_VERSION=$(curl -k -X GET $url --silent)
+OLD_VERSION=$(curl -k -X GET $URL --silent)
 echo "Old Version: $OLD_VERSION"
 
-ssh root@46.182.21.244 $file
+ssh root@46.182.21.244 $FILE
 
 sleep 5s
 
-NEW_VERSION=$(curl -k -X GET $url --silent)
+NEW_VERSION=$(curl -k -X GET $URL --silent)
 echo "New Version: $NEW_VERSION"
+# if OLD_VERSION != NEW_VERSION then success
+if [ "$OLD_VERSION" != "$NEW_VERSION" ]; then
+  echo "Update successful"
+else
+  echo "Update failed"
+  exit 4
+fi
 
 echo "Updating on Github"
 git push

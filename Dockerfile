@@ -38,6 +38,7 @@ RUN echo "[{\"version\":\"$(jq -r '.version' package.json)\"}]" > version_motor.
 # base image
 FROM nginx:latest
 ARG port=8080
+ARG env=production
 
 ## Remove default nginx website
 RUN rm -rf /usr/share/nginx/html/*
@@ -51,7 +52,7 @@ COPY --from=builder /app/version.json /usr/share/nginx/version/version.json
 COPY --from=builder /app/version_motor.json /usr/share/nginx/version/version_motor.json
 
 # copy nginx conf
-COPY nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY nginx.$env.conf /etc/nginx/conf.d/nginx.conf
 
 # expose port 8080
 EXPOSE $port
