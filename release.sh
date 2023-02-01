@@ -26,22 +26,22 @@ else
   echo "Not on main or develop branch"
   exit 0
 fi
-echo "Version: $VERSION"
 
 echo "Release a new Version"
 git add .
 git commit -m "$1"
-npm version patch
+#npm version patch
 VERSION=$(jq -r '.version' package.json)
+echo "Version: $VERSION"
 
 # TODO: Add $1 to package and CHANGELOG with date and version
 
 echo "Building new Artifact"
-podman build -t bibelquiz-frontend:latest:$tag --build-arg=port=$port --build-arg=env=$env .
-podman tag bibelquiz-frontend:latest dsigmund/bibelquiz-frontend::$tag
-podman tag bibelquiz-frontend:latest dsigmund/bibelquiz-frontend:$VERSION
+podman build -t bibelquiz-frontend:$tag --build-arg=port=$port --build-arg=env=$env .
+podman tag bibelquiz-frontend:$tag dsigmund/bibelquiz-frontend:$tag
+podman tag bibelquiz-frontend:$tag dsigmund/bibelquiz-frontend:$VERSION
 podman push dsigmund/bibelquiz-frontend:$VERSION
-podman push dsigmund/bibelquiz-frontend::$tag
+podman push dsigmund/bibelquiz-frontend:$tag
 echo "Done"
 
 echo "Updating on Server"
