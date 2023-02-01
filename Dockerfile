@@ -4,6 +4,7 @@
 
 # base image
 FROM node:alpine AS builder
+ARG env=production
 
 # install jq to get version
 RUN apk add jq
@@ -23,7 +24,7 @@ RUN npm install -g @angular/cli
 COPY . /app
 
 # generate build
-RUN ng build --configuration=production --output-path=dist --aot --output-hashing=all
+RUN ng build --configuration=$env --output-path=dist --aot --output-hashing=all
 
 # Create Version files
 RUN echo "$(jq -r '.version' package.json)" > version.txt
@@ -36,6 +37,7 @@ RUN echo "[{\"version\":\"$(jq -r '.version' package.json)\"}]" > version_motor.
 
 # base image
 FROM nginx:latest
+ARG port=8080
 
 ## Remove default nginx website
 RUN rm -rf /usr/share/nginx/html/*
@@ -52,4 +54,4 @@ COPY --from=builder /app/version_motor.json /usr/share/nginx/version/version_mot
 COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 
 # expose port 8080
-EXPOSE 8080
+EXPOSE $port
