@@ -22,7 +22,7 @@ FILE="/opt/docker/frontend.sh"
 URL="https://dasbibelquiz.de/version.txt"
 TAG="latest"
 PORT=8080
-ENV="production"
+ENVIRONMENT="production"
 
 # incremtent version on patch level without npm version patch
 IFS=. read -r MAJOR MINOR PATCH <<< "$VERSION"
@@ -44,11 +44,18 @@ fi
 VERSION="$MAJOR.$MINOR.$PATCH"
 echo "Version: $VERSION"
 
-# insert version into package.json
-jq --arg VERSION "$VERSION" '.version = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+# if level != 0
+if [ "$LEVEL" != "0" ]; then
+  # insert version into package.json
+  echo "Inserting version into package.json: $VERSION"
+  jq --arg VERSION "$VERSION" '.version = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
 
-# add commit message with date into package.json
-jq --arg MESSAGE "$MESSAGE" --arg VERSION "$VERSION" '.changelog += ["$VERSION;$MESSAGE"]' package.json > package.json.tmp && mv package.json.tmp package.json
+  # add commit message with date into package.json
+  CHANGE=$VERSION";"$MESSAGE
+  echo "Inserting change into package.json-changelog: $CHANGE"
+  jq --arg CHANGE "$CHANGE"'.changelog += [$CHANGE]' package.json > package.json.tmp && mv package.json.tmp package.json
+fi
+
 
 # Check if the branch is "main" or "develop"
 if [ "$BRANCH" == "main" ]; then
@@ -62,7 +69,7 @@ elif [ "$BRANCH" == "develop" ]; then
   TAG="beta"
   PORT=16080
   VERSION="$VERSION-beta"
-  ENV="beta"
+  ENVIRONMENT="beta"
 else
   # Ignore all other branches
   echo "Not on main or develop branch"
@@ -74,8 +81,8 @@ git add .
 git commit -m "$1" 
 
 
-echo "Building new Artifact:bibelquiz-frontend:$TAG "
-podman build -t bibelquiz-frontend:$TAG --build-arg=port=$PORT --build-arg=env=$ENV .
+echo "Building new Artifact:bibelquiz-frontend:$TAG for POrt $PORT and Environment $ENVIRONMENT"
+podman build -t bibelquiz-frontend:$TAG --build-arg=PORT=$PORT --build-arg=ENVIRONMENT=$ENVIRONMENT .
 podman tag bibelquiz-frontend:$TAG dsigmund/bibelquiz-frontend:$TAG
 podman tag bibelquiz-frontend:$TAG dsigmund/bibelquiz-frontend:$VERSION
 podman push dsigmund/bibelquiz-frontend:$VERSION
