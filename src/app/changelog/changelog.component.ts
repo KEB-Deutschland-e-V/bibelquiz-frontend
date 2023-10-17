@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangelogComponent implements OnInit {
   changes = [
+    "1.0.47;Ladebalken wird nun angezeigt, wenn Highscores noch nicht geladen wurden",
     "1.0.46;Die Eingabe von Namen wurde auf 20 Zeichen beschränkt;Highscorese können nicht mehr mehrfach abgesendet werden;Leere Namen können nicht mehr eingetragen werden",
     "1.0.45;Es wird das Datum bei den Highscores angezeigt",
     "1.0.44;Es werden nun alle Highscores angezeigt, nicht nur die Top Ten.",
