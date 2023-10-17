@@ -34,4 +34,5 @@ export interface Highscore {
   username:string;
   score:string;
   difficulty: string;
+  date?: string;
 }

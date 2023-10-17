@@ -2,6 +2,7 @@
   color: black;
   font-size: 1.2em;
   border-bottom: 1px solid gray;
+  align-items: inherit;
 }
 mat-list mat-list-item:last-child {
   border-bottom: none !important;
@@ -14,6 +15,12 @@ strong {
 }
 em {
   margin-left: auto;
+}
+.date {
+  font-size: 0.6em;
+  margin-left: 10px;
+  align-self: center;
+  color: #656565;
 }
 
 .start-button {

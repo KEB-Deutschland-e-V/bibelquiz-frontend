@@ -4,6 +4,7 @@
   <mat-list-item *ngFor="let score of highscores; index as i">
     <strong>{{i+1}}</strong>
     {{score.username}}
+    <span class="date">{{score.date | date:'dd.MM.yyyy'}}</span>
     <em>{{score.score}}</em>
   </mat-list-item>
 </mat-list>
