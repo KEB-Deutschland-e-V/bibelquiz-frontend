@@ -30,7 +30,6 @@ jobs:
         docker build -t bibelquiz-frontend:latest .
         docker tag bibelquiz-frontend:latest dsigmund/bibelquiz-frontend:latest
         docker tag bibelquiz-frontend:latest dsigmund/bibelquiz-frontend:${{ steps.get-version.outputs.version }}
-      working-directory: ./path/to/your/frontend/app
 
     - name: Login to DockerHub
       run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
