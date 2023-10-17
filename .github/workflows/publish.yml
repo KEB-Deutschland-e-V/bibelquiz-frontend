@@ -1,0 +1,43 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push-docker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Get Package Version
+      id: get-version
+      run: echo "::set-output name=version::$(node -p -e "require('./package.json').version")"
+
+    - name: Build Docker Image
+      run: |
+        docker build -t bibelquiz-frontend:latest .
+        docker tag bibelquiz-frontend:latest dsigmund/bibelquiz-frontend:latest
+        docker tag bibelquiz-frontend:latest dsigmund/bibelquiz-frontend:${{ steps.get-version.outputs.version }}
+
+    - name: Login to DockerHub
+      run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      env:
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Push Docker Images
+      run: |
+        docker push dsigmund/bibelquiz-frontend:latest
+        docker push dsigmund/bibelquiz-frontend:${{ steps.get-version.outputs.version }}
