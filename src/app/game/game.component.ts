@@ -52,6 +52,7 @@ export class GameComponent implements OnInit {
   canvas: any;
   saveName: boolean = false;
   name: string = '';
+  highscoreSent: boolean = false;
   entry = false;
   constructor(
     private backend: BackendService, 
@@ -273,6 +274,16 @@ export class GameComponent implements OnInit {
   }
 
   public inputHighscore(): void {
+    if (this.name.length < 1) { // no name entered
+      return;
+    }
+    if (this.highscoreSent) { // already sent
+      return;
+    }
+    if (this.name.length > 20) { // name too long
+      return;
+    }
+    this.highscoreSent = true;
     localStorage.setItem("name", this.name)
     this.highscoreService.enterScore({
       username: this.name,
@@ -280,6 +291,7 @@ export class GameComponent implements OnInit {
       difficulty: this.difficulty.id
     }).subscribe(result => {
       console.log('score entered')
+      this.highscoreSent = false;
       this.entry = true;
       this.state = GameState.Again; 
     });

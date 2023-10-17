@@ -13,7 +13,8 @@ export class HighscoreService {
     return this.httpClient.post(environment.backend + '/highscore', {
       username: data.username,
       score: parseInt(data.score),
-      difficulty: data.difficulty
+      difficulty: data.difficulty,
+      gamemode: 1 // default value, will be replaced
     }, {
       headers: new HttpHeaders({
         'Accept': 'text/html, application/xhtml+xml, */*',
