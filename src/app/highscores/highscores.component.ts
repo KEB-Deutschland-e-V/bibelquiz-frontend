@@ -14,12 +14,14 @@ export class HighscoresComponent implements OnInit {
   highscores: Highscore[] = [];
   diffWithScores: any = [];
   loading: boolean = true;
+  name: string = '';
   constructor(
     private backend: BackendService,
     private highscoreService: HighscoreService,
     private bgm: BgmService
     ) {
     this.loading = true;
+    this.name = localStorage.getItem("name") || ''
     this.difficulties = this.backend.getDifficulties();
     this.highscoreService.getHighscores().subscribe((data: any) => {
       this.highscores = data;

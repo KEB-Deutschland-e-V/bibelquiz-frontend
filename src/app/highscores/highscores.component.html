@@ -3,8 +3,8 @@
 <br/>
 <div id="loading" *ngIf="loading"></div>
 <br/>
-<mat-list>
-  <mat-list-item *ngFor="let score of highscores; index as i">
+<mat-list style="margin-bottom: 20px;">
+  <mat-list-item *ngFor="let score of highscores; index as i" [class.my-score] = "score.username === name">
     <strong>{{i+1}}</strong>
     {{score.username}}
     <span class="date">{{score.date | date:'dd.MM.yyyy'}}</span>
