@@ -22,6 +22,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRippleModule} from '@angular/material/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatLegacySlideToggleModule as MatSlideToggleModule} from '@angular/material/legacy-slide-toggle';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 
 import { AnswerComponent } from './answer/answer.component';
@@ -63,6 +65,7 @@ export function preloadQuestions(backendService: BackendService): Function {
     MatToolbarModule,
     MatListModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatGridListModule,
     MatIconModule,
     MatRippleModule,
