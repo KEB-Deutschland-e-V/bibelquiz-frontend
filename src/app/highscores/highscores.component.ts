@@ -17,6 +17,7 @@ export class HighscoresComponent implements OnInit {
   name: string = '';
   filter: String = 'week';
   filterName: String = 'der Woche';
+  onlyMyScores: boolean = false;
   constructor(
     private backend: BackendService,
     private highscoreService: HighscoreService,
@@ -40,6 +41,15 @@ export class HighscoresComponent implements OnInit {
     });
   }
   
+  showOnlyMyScores() {
+    this.onlyMyScores = !this.onlyMyScores;
+    if (this.onlyMyScores) {
+      this.highscores = this.highscores.filter(score => score.username === this.name);
+    } else {
+      this.loadHighscores(this.filter);
+    }
+  }
+
   ngOnInit(): void {
     this.bgm.theme();
   }
