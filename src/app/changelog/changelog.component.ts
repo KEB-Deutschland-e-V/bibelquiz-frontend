@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangelogComponent implements OnInit {
   changes = [
+    "1.1.0;Neue Logos",
     "1.0.51;Highscores können nun nach 'meinen' Highscores gefiltert werden.",
     "1.0.50;Highscores können nun nach Zeiteinheiten gefiltert werden. Standardmäßig werden nur die Highscores der letzten Woche angezeigt.",
     "1.0.48;Eigene Highscores werden markiert, wenn ein Name eingetragen wurde.",
